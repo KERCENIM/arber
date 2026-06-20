@@ -2851,6 +2851,25 @@
 
     var form = document.getElementById('dna-submit-form');
     if (!form) return;
+
+    // ── Soft anti-duplicate guard ──
+    // One submission per browser. Not bulletproof (incognito / cleared storage
+    // bypasses it), but it stops casual repeat submissions to inflate a region.
+    // Real dedup happens at review time: Basin logs each submitter's IP, so
+    // same-IP clusters are easy to spot and reject before adding to the map.
+    var STORE_KEY = 'arberikon_lineage_submitted';
+    function showAlreadySubmitted() {
+      form.innerHTML =
+        '<div class="form-success">' +
+          '<div class="check"><svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg></div>' +
+          '<h3>Already submitted</h3>' +
+          '<p>You’ve already submitted a lineage from this device. To add another paternal line or make a correction, email <a href="mailto:arberikon@gmail.com" style="color:var(--gold);">arberikon@gmail.com</a>.</p>' +
+        '</div>';
+    }
+    try {
+      if (localStorage.getItem(STORE_KEY)) { showAlreadySubmitted(); return; }
+    } catch (e) { /* storage unavailable — fall through */ }
+
     var statusEl = document.getElementById('form-status');
     var btn = document.getElementById('submit-btn');
     var fileInput = document.getElementById('f-file');
@@ -2902,6 +2921,7 @@
       })
         .then(function (res) {
           if (res.ok) {
+            try { localStorage.setItem(STORE_KEY, String(Date.now())); } catch (e) {}
             form.innerHTML =
               '<div class="form-success">' +
                 '<div class="check"><svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg></div>' +
