@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Terms &amp; Consent — Arbërikon</title>
+<meta name="description" content="Terms of Use and Consent for submitting Y-DNA lineage data to the Arbërikon Albanian DNA project." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --red: #cc1b1b;
+    --red-light: #e82020;
+    --gold: #c4973c;
+    --gold-dim: rgba(196, 151, 60, 0.15);
+    --bg: #0b0d15;
+    --bg2: #0f1120;
+    --bg3: #141728;
+    --border: rgba(255,255,255,0.07);
+    --border-hover: rgba(255,255,255,0.14);
+    --text: #e8e2d6;
+    --text-muted: #8a8278;
+    --text-dim: #5c5650;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Top bar */
+  .terms-nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    height: 60px;
+    background: rgba(11,13,21,0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 0.5px solid var(--border);
+  }
+  .terms-nav .logo {
+    font-family: 'EB Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--text);
+    text-decoration: none;
+    letter-spacing: 0.01em;
+  }
+  .terms-nav .logo span { color: var(--red); }
+  .terms-nav .back {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .terms-nav .back:hover { color: var(--text); }
+
+  .terms-wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 4rem 1.6rem 6rem;
+  }
+
+  .terms-head { margin-bottom: 2.5rem; }
+  .terms-head .eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.8rem;
+  }
+  .terms-head h1 {
+    font-family: 'EB Garamond', serif;
+    font-size: 2.6rem;
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    line-height: 1.15;
+  }
+  .terms-head .updated {
+    margin-top: 0.9rem;
+    font-size: 0.85rem;
+    color: var(--text-dim);
+  }
+
+  .terms-intro {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--gold);
+    border-radius: 10px;
+    padding: 1.2rem 1.4rem;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 3rem;
+  }
+  .terms-intro strong { color: var(--text); font-weight: 500; }
+
+  .terms-section { margin-bottom: 2.4rem; }
+  .terms-section h2 {
+    font-family: 'EB Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.7rem;
+    display: flex;
+    gap: 0.7rem;
+    align-items: baseline;
+  }
+  .terms-section h2 .num {
+    color: var(--red-light);
+    font-size: 1.05rem;
+    font-variant-numeric: tabular-nums;
+  }
+  .terms-section p { color: var(--text-muted); margin-bottom: 0.7rem; }
+  .terms-section p:last-child { margin-bottom: 0; }
+  .terms-section strong { color: var(--text); font-weight: 500; }
+
+  .terms-section ul {
+    list-style: none;
+    margin: 0.4rem 0 0.7rem;
+    padding: 0;
+  }
+  .terms-section li {
+    position: relative;
+    padding-left: 1.3rem;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+  }
+  .terms-section li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.62em;
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--gold);
+  }
+
+  a.inline { color: var(--gold); text-decoration: none; border-bottom: 1px solid var(--gold-dim); }
+  a.inline:hover { border-bottom-color: var(--gold); }
+
+  .terms-divider { height: 1px; background: var(--border); margin: 3rem 0; }
+
+  .terms-foot {
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 0.85rem;
+  }
+  .terms-foot a { color: var(--text-muted); text-decoration: none; }
+  .terms-foot a:hover { color: var(--text); }
+
+  @media (max-width: 600px) {
+    .terms-head h1 { font-size: 2rem; }
+    .terms-wrap { padding: 2.8rem 1.2rem 4rem; }
+    .terms-nav { padding: 0 1.2rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="terms-nav">
+  <a href="index.html" class="logo">Arbër<span>ikon</span></a>
+  <a href="index.html#contribute" class="back">← Back to submission</a>
+</nav>
+
+<div class="terms-wrap">
+  <div class="terms-head">
+    <div class="eyebrow">Map Yourself</div>
+    <h1>Terms &amp; Consent</h1>
+    <div class="updated">Last updated: 19 June 2026</div>
+  </div>
+
+  <div class="terms-intro">
+    <strong>Please read this before submitting.</strong> Arbërikon collects voluntary Y-DNA information from people of Albanian descent to build an open map of Albanian paternal lineages. By submitting the form, you agree to the terms below. If you do not agree, please do not submit. This document is written in plain language; it is not legal advice, and it does not create any professional relationship between you and Arbërikon.
+  </div>
+
+  <div class="terms-section">
+    <h2><span class="num">1.</span> Who we are</h2>
+    <p>Arbërikon is an independent, non-commercial heritage and research project documenting Albanian history, genetics, and linguistics. We are not a medical provider, a laboratory, an ancestry-testing company, or a government body. We are not affiliated with any DNA-testing service you may have used.</p>
+  </div>
+
+  <div class="terms-section">
+    <h2><span class="num">2.</span> What you may submit</h2>
+    <p>Through the submission form you may voluntarily provide some or all of the following:</p>
+    <ul>
+      <li>Your Y-DNA haplogroup, subclade / terminal SNP, and mtDNA haplogroup</li>
+      <li>A general place of paternal origin (district, region, country) and, optionally, fis / tribe</li>
+      <li>The testing company you used and free-text notes</li>
+      <li>Optionally, a raw DNA data file or a link to one</li>
+      <li>Optionally, a contact (email or social handle) if you wish to receive a reply</li>
+    </ul>
+    <p><strong>Please do not include your full legal name or other unnecessary identifying details.</strong> Only submit what you are comfortable sharing.</p>
+  </div>
+
+  <div class="terms-section">
+    <h2><span class="num">3.</span> Eligibility</h2>
+    <p>You must be <strong>18 years of age or older</strong> to submit. Do not submit data belonging to a minor. By submitting, you confirm that you meet this age requirement.</p>
+  </div>
+
+  <div class="terms-section">
+    <h2><span class="num">4.</span> Your representations</h2>
+    <p>By submitting, you confirm that:</p>
+    <ul>
+      <li>The genetic data is <strong>your own</strong>, or you have the explicit authority and consent of the person it belongs to;</li>
+      <li>You have the right to share it, and doing so does not violate any agreement with your testing provider or any third party's rights;</li>
+      <li>The information you provide is accurate to the best of your knowledge.</li>
+    </ul>
+  </div>
+
+  <div class="terms-section">
+    <h2><span class="num">5.</span> How we use your submission</h2>
+    <p>We use submitted data to:</p>
+    <ul>
+      <li>Verify and categorise Y-DNA haplogroups and subclades;</li>
+      <li>Plot lineages on the public Arbërikon Albanian Y-DNA map;</li>
+      <li>Conduct and share non-commercial research on Albanian population genetics and history.</li>
+    </ul>
+    <p>We do <strong>not</strong> sell your data, use it for advertising, attempt to personally identify you, or share raw files with third parties.</p>
+  </div>
+
+  <div class="terms-section">
+    <h2><span class="num">6.</span> What becomes public</h2>
+    <p>Only <strong>non-identifying</strong> information appears on the public map — typically your haplogroup / subclade and a general geographic point (district or region level). Your raw data file, contact details, and any notes you provide are <strong>kept private</strong> and are not published. We aim to keep mapped points general enough that they cannot reasonably identify an individual.</p>
+  </div>
+
+  <div class="terms-section">
+    <h2><span class="num">7.</span> Storage &amp; security</h2>
+    <p>Submissions are received and stored through a third-party form service and are accessible only to the Arbërikon maintainer. While we take reasonable care to protect submissions, <strong>no method of transmission or storage is completely secure</strong>, and we cannot guarantee absolute security. Submit only what you are comfortable sharing under those terms.</p>
+  </div>
+
+  <div class="terms-section">
+    <h2><span class="num">8.</span> Withdrawal &amp; deletion</h2>
+    <p>Your participation is entirely voluntary. You may request that your submission and any associated file be removed at any time, for any reason, by contacting us (see Section 12). We will delete it from our records and remove the corresponding point from the map within a reasonable period. To help us locate your entry, please include the details you originally submitted.</p>
+  </div>
+
+  <div class="terms-section">
+    <h2><span class="num">9.</span> No medical or professional advice</h2>
+    <p>Arbërikon is a heritage and research project. Nothing here or on the map is medical, health, genealogical, or legal advice. Haplogroup and ancestry information is for historical and educational interest only and must not be used to make health or other decisions. Consult a qualified professional for any such matters.</p>
+  </div>
+
+  <div class="terms-section">
+    <h2><span class="num">10.</span> No warranty &amp; limitation of liability</h2>
+    <p>The site, the map, and all content are provided <strong>"as is" and "as available," without warranties of any kind</strong>, express or implied. We do not warrant that haplogroup assignments, map placements, or interpretations are accurate, complete, or error-free.</p>
+    <p>To the fullest extent permitted by law, Arbërikon and its maintainer will not be liable for any indirect, incidental, or consequential damages arising from your use of the site or your submission of data. You submit and use this site at your own risk.</p>
+  </div>
+
+  <div class="terms-section">
+    <h2><span class="num">11.</span> Changes to these terms</h2>
+    <p>We may update these terms from time to time. The "last updated" date above reflects the most recent version. Material changes will apply only to submissions made after the change. Continued use of the site after an update constitutes acceptance of the revised terms.</p>
+  </div>
+
+  <div class="terms-section">
+    <h2><span class="num">12.</span> Contact</h2>
+    <p>For questions, corrections, or to withdraw your data, email us at <a class="inline" href="mailto:arberikon@gmail.com">arberikon@gmail.com</a> or reach us via <a class="inline" href="https://x.com/arberikon" target="_blank" rel="noopener">@arberikon on X</a>.</p>
+  </div>
+
+  <div class="terms-divider"></div>
+
+  <div class="terms-foot">
+    <a href="index.html#contribute">← Return to the submission form</a>
+  </div>
+</div>
+
+</body>
+</html>
