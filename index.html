@@ -1504,6 +1504,29 @@
     max-width: 640px;
     margin: 0 auto;
   }
+  .dict-toggle {
+    display: flex;
+    justify-content: center;
+    gap: 0.6rem;
+    margin-bottom: 1.1rem;
+  }
+  .dict-toggle-btn {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 0.5rem 1.1rem;
+    color: var(--text-muted);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.82rem;
+    cursor: pointer;
+    transition: border-color 0.18s, color 0.18s, background 0.18s;
+  }
+  .dict-toggle-btn:hover { border-color: var(--border-hover); color: var(--text); }
+  .dict-toggle-btn.active {
+    background: var(--red-dim);
+    border-color: var(--red);
+    color: var(--text);
+  }
   .dict-search-wrap { position: relative; }
   .dict-search-wrap svg {
     position: absolute;
@@ -2152,18 +2175,22 @@
 <section class="dictionary" id="dictionary">
   <div class="container">
     <div class="section-label fade-in">Reference Tool</div>
-    <h2 class="section-title fade-in">English → Albanian Dictionary</h2>
+    <h2 class="section-title fade-in" id="dict-title">English → Albanian Dictionary</h2>
     <div class="divider fade-in"></div>
-    <p class="section-lead fade-in">A searchable digitisation of Idris Ruka's <em>English–Albanian Dictionary</em> (Tirana, 2006) — roughly 15,800 headwords with pronunciation guides and Albanian translations. Digitised via OCR from the original print edition, so occasional scanning artifacts may appear in older or rarer entries.</p>
+    <p class="section-lead fade-in" id="dict-lead">A searchable digitisation of Idris Ruka's <em>English–Albanian Dictionary</em> (Tirana, 2006) — roughly 15,800 headwords with pronunciation guides and Albanian translations. Digitised via OCR from the original print edition, so occasional scanning artifacts may appear in older or rarer entries.</p>
 
     <div class="dictionary-box fade-in">
+      <div class="dict-toggle" role="group" aria-label="Dictionary direction">
+        <button type="button" class="dict-toggle-btn active" id="dict-dir-en" data-dir="en">English → Albanian</button>
+        <button type="button" class="dict-toggle-btn" id="dict-dir-sq" data-dir="sq">Albanian → English</button>
+      </div>
       <div class="dict-search-wrap">
         <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" stroke-width="2"/><path d="M21 21l-4.3-4.3" stroke-width="2" stroke-linecap="round"/></svg>
         <input type="text" class="dict-search" id="dict-search" placeholder="Search an English word…" autocomplete="off" />
       </div>
       <div class="dict-status" id="dict-status"></div>
       <div class="dict-results" id="dict-results"></div>
-      <div class="dict-note">Source: Idris Ruka, <em>Fjalor Anglisht–Shqip</em>, Tirana, 2006. Digitised for non-commercial reference use.</div>
+      <div class="dict-note" id="dict-note">Source: Idris Ruka, <em>Fjalor Anglisht–Shqip</em>, Tirana, 2006. Digitised for non-commercial reference use.</div>
     </div>
   </div>
 </section>
@@ -3045,7 +3072,37 @@
     var input = document.getElementById('dict-search');
     var resultsEl = document.getElementById('dict-results');
     var statusEl = document.getElementById('dict-status');
-    var data = null;
+    var titleEl = document.getElementById('dict-title');
+    var leadEl = document.getElementById('dict-lead');
+    var noteEl = document.getElementById('dict-note');
+    var btnEn = document.getElementById('dict-dir-en');
+    var btnSq = document.getElementById('dict-dir-sq');
+
+    var DIRECTIONS = {
+      en: {
+        file: 'dictionary-data.json',
+        wordKey: 'en',
+        glossKey: 'sq',
+        ipaKey: 'ipa',
+        title: 'English → Albanian Dictionary',
+        placeholder: 'Search an English word…',
+        lead: 'A searchable digitisation of Idris Ruka\'s <em>English–Albanian Dictionary</em> (Tirana, 2006) — roughly 15,800 headwords with pronunciation guides and Albanian translations. Digitised via OCR from the original print edition, so occasional scanning artifacts may appear in older or rarer entries.',
+        note: 'Source: Idris Ruka, <em>Fjalor Anglisht–Shqip</em>, Tirana, 2006. Digitised for non-commercial reference use.'
+      },
+      sq: {
+        file: 'albanian-english-dict.json',
+        wordKey: 'sq',
+        glossKey: 'en',
+        ipaKey: null,
+        title: 'Albanian → English Dictionary',
+        placeholder: 'Search an Albanian word…',
+        lead: 'A searchable digitisation of Hysa\'s <em>Albanian–English Dictionary</em> (Hippocrene Books, 1993) — roughly 10,800 headwords with English glosses. Digitised via OCR from an older print edition, so scanning artifacts are more frequent here than in the English–Albanian direction above.',
+        note: 'Source: Hysa, <em>Albanian–English Dictionary</em>, Hippocrene Books, 1993. Digitised for non-commercial reference use.'
+      }
+    };
+
+    var dir = 'en';
+    var cache = {};
     var loading = false;
     var debounceTimer = null;
 
@@ -3056,6 +3113,8 @@
     }
 
     function render(query) {
+      var cfg = DIRECTIONS[dir];
+      var data = cache[dir];
       if (!query) {
         resultsEl.innerHTML = '';
         statusEl.textContent = '';
@@ -3065,10 +3124,10 @@
       var starts = [];
       var includes = [];
       for (var i = 0; i < data.length; i++) {
-        var en = data[i].en.toLowerCase();
-        if (en.indexOf(q) === 0) {
+        var word = data[i][cfg.wordKey].toLowerCase();
+        if (word.indexOf(q) === 0) {
           starts.push(data[i]);
-        } else if (en.indexOf(q) !== -1) {
+        } else if (word.indexOf(q) !== -1) {
           includes.push(data[i]);
         }
         if (starts.length >= 40) break;
@@ -3081,23 +3140,23 @@
       }
       statusEl.textContent = combined.length + (combined.length === 40 ? '+ matches (showing first 40)' : ' match' + (combined.length === 1 ? '' : 'es'));
       resultsEl.innerHTML = combined.map(function (e) {
+        var ipa = cfg.ipaKey && e[cfg.ipaKey] ? '<span class="dict-ipa">[' + escapeHtml(e[cfg.ipaKey]) + ']</span>' : '';
         return '<div class="dict-entry">' +
-          '<span class="dict-word">' + escapeHtml(e.en) + '</span>' +
-          '<span class="dict-ipa">[' + escapeHtml(e.ipa) + ']</span>' +
-          '<div class="dict-sq">' + escapeHtml(e.sq) + '</div>' +
+          '<span class="dict-word">' + escapeHtml(e[cfg.wordKey]) + '</span>' + ipa +
+          '<div class="dict-sq">' + escapeHtml(e[cfg.glossKey]) + '</div>' +
           '</div>';
       }).join('');
     }
 
     function ensureData(callback) {
-      if (data) { callback(); return; }
+      if (cache[dir]) { callback(); return; }
       if (loading) return;
       loading = true;
       statusEl.textContent = 'Loading dictionary…';
-      fetch('dictionary-data.json')
+      fetch(DIRECTIONS[dir].file)
         .then(function (res) { return res.json(); })
         .then(function (json) {
-          data = json;
+          cache[dir] = json;
           loading = false;
           callback();
         })
@@ -3106,6 +3165,24 @@
           statusEl.textContent = 'Could not load the dictionary. Please try again later.';
         });
     }
+
+    function setDirection(newDir) {
+      if (dir === newDir) return;
+      dir = newDir;
+      var cfg = DIRECTIONS[dir];
+      btnEn.classList.toggle('active', dir === 'en');
+      btnSq.classList.toggle('active', dir === 'sq');
+      titleEl.textContent = cfg.title;
+      leadEl.innerHTML = cfg.lead;
+      noteEl.innerHTML = cfg.note;
+      input.placeholder = cfg.placeholder;
+      input.value = '';
+      resultsEl.innerHTML = '';
+      statusEl.textContent = '';
+    }
+
+    btnEn.addEventListener('click', function () { setDirection('en'); });
+    btnSq.addEventListener('click', function () { setDirection('sq'); });
 
     input.addEventListener('focus', function () { ensureData(function () { render(input.value.trim()); }); });
     input.addEventListener('input', function () {
