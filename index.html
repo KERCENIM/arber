@@ -1499,6 +1499,80 @@
     background-repeat: no-repeat; background-position: right 0.9rem center; padding-right: 2rem;
   }
 
+  /* DICTIONARY */
+  .dictionary-box {
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  .dict-search-wrap { position: relative; }
+  .dict-search-wrap svg {
+    position: absolute;
+    left: 1rem; top: 50%;
+    transform: translateY(-50%);
+    width: 18px; height: 18px;
+    stroke: var(--text-dim);
+    fill: none;
+    pointer-events: none;
+  }
+  .dict-search {
+    width: 100%;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 0.95rem 1rem 0.95rem 2.8rem;
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    transition: border-color 0.18s, background 0.18s;
+  }
+  .dict-search::placeholder { color: var(--text-dim); }
+  .dict-search:focus { outline: none; border-color: var(--red); background: var(--bg3); }
+  .dict-status {
+    margin-top: 0.7rem;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    text-align: center;
+    min-height: 1.2em;
+  }
+  .dict-results {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    max-height: 480px;
+    overflow-y: auto;
+  }
+  .dict-entry {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 0.85rem 1.05rem;
+  }
+  .dict-entry .dict-word {
+    font-family: 'EB Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .dict-entry .dict-ipa {
+    color: var(--gold);
+    font-size: 0.85rem;
+    margin-left: 0.5rem;
+  }
+  .dict-entry .dict-sq {
+    margin-top: 0.3rem;
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    line-height: 1.55;
+  }
+  .dict-note {
+    margin-top: 1.4rem;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    text-align: center;
+    line-height: 1.6;
+  }
+
   /* File input */
   .file-field input[type="file"] { display: none; }
   .file-drop {
@@ -1593,6 +1667,7 @@
     <li><a href="#history">History</a></li>
     <li><a href="#genetics">Genetics</a></li>
     <li><a href="#linguistics">Linguistics</a></li>
+    <li><a href="#dictionary">Dictionary</a></li>
     <li><a href="#posts">Posts</a></li>
     <li><a href="#research">Research</a></li>
     <li><a href="#contribute">Map Yourself</a></li>
@@ -1613,6 +1688,7 @@
   <a href="#history" class="mobile-link">History</a>
   <a href="#genetics" class="mobile-link">Genetics</a>
   <a href="#linguistics" class="mobile-link">Linguistics</a>
+  <a href="#dictionary" class="mobile-link">Dictionary</a>
   <a href="#posts" class="mobile-link">Posts</a>
   <a href="#research" class="mobile-link">Research</a>
   <a href="#contribute" class="mobile-link">Map Yourself</a>
@@ -1624,6 +1700,7 @@
   <a href="#history">History</a>
   <a href="#genetics">Genetics</a>
   <a href="#linguistics">Linguistics</a>
+  <a href="#dictionary">Dictionary</a>
   <a href="#posts">Posts</a>
   <a href="#research">Research</a>
   <a href="#contribute">Map Yourself</a>
@@ -2067,6 +2144,26 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- DICTIONARY -->
+<section class="dictionary" id="dictionary">
+  <div class="container">
+    <div class="section-label fade-in">Reference Tool</div>
+    <h2 class="section-title fade-in">English → Albanian Dictionary</h2>
+    <div class="divider fade-in"></div>
+    <p class="section-lead fade-in">A searchable digitisation of Idris Ruka's <em>English–Albanian Dictionary</em> (Tirana, 2006) — roughly 15,800 headwords with pronunciation guides and Albanian translations. Digitised via OCR from the original print edition, so occasional scanning artifacts may appear in older or rarer entries.</p>
+
+    <div class="dictionary-box fade-in">
+      <div class="dict-search-wrap">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" stroke-width="2"/><path d="M21 21l-4.3-4.3" stroke-width="2" stroke-linecap="round"/></svg>
+        <input type="text" class="dict-search" id="dict-search" placeholder="Search an English word…" autocomplete="off" />
+      </div>
+      <div class="dict-status" id="dict-status"></div>
+      <div class="dict-results" id="dict-results"></div>
+      <div class="dict-note">Source: Idris Ruka, <em>Fjalor Anglisht–Shqip</em>, Tirana, 2006. Digitised for non-commercial reference use.</div>
     </div>
   </div>
 </section>
@@ -2938,6 +3035,85 @@
           statusEl.className = 'form-status error';
           statusEl.textContent = 'Something went wrong. Please try again, or reach out on X.';
         });
+    });
+  })();
+</script>
+
+<!-- DICTIONARY SEARCH -->
+<script>
+  (function () {
+    var input = document.getElementById('dict-search');
+    var resultsEl = document.getElementById('dict-results');
+    var statusEl = document.getElementById('dict-status');
+    var data = null;
+    var loading = false;
+    var debounceTimer = null;
+
+    function escapeHtml(str) {
+      return str.replace(/[&<>"']/g, function (c) {
+        return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c];
+      });
+    }
+
+    function render(query) {
+      if (!query) {
+        resultsEl.innerHTML = '';
+        statusEl.textContent = '';
+        return;
+      }
+      var q = query.toLowerCase();
+      var starts = [];
+      var includes = [];
+      for (var i = 0; i < data.length; i++) {
+        var en = data[i].en.toLowerCase();
+        if (en.indexOf(q) === 0) {
+          starts.push(data[i]);
+        } else if (en.indexOf(q) !== -1) {
+          includes.push(data[i]);
+        }
+        if (starts.length >= 40) break;
+      }
+      var combined = starts.concat(includes).slice(0, 40);
+      if (combined.length === 0) {
+        resultsEl.innerHTML = '';
+        statusEl.textContent = 'No matches found.';
+        return;
+      }
+      statusEl.textContent = combined.length + (combined.length === 40 ? '+ matches (showing first 40)' : ' match' + (combined.length === 1 ? '' : 'es'));
+      resultsEl.innerHTML = combined.map(function (e) {
+        return '<div class="dict-entry">' +
+          '<span class="dict-word">' + escapeHtml(e.en) + '</span>' +
+          '<span class="dict-ipa">[' + escapeHtml(e.ipa) + ']</span>' +
+          '<div class="dict-sq">' + escapeHtml(e.sq) + '</div>' +
+          '</div>';
+      }).join('');
+    }
+
+    function ensureData(callback) {
+      if (data) { callback(); return; }
+      if (loading) return;
+      loading = true;
+      statusEl.textContent = 'Loading dictionary…';
+      fetch('dictionary-data.json')
+        .then(function (res) { return res.json(); })
+        .then(function (json) {
+          data = json;
+          loading = false;
+          callback();
+        })
+        .catch(function () {
+          loading = false;
+          statusEl.textContent = 'Could not load the dictionary. Please try again later.';
+        });
+    }
+
+    input.addEventListener('focus', function () { ensureData(function () { render(input.value.trim()); }); });
+    input.addEventListener('input', function () {
+      var val = input.value.trim();
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(function () {
+        ensureData(function () { render(val); });
+      }, 120);
     });
   })();
 </script>
