@@ -1582,6 +1582,13 @@
     font-size: 0.85rem;
     margin-left: 0.5rem;
   }
+  .dict-entry .dict-verified {
+    color: var(--gold);
+    font-size: 0.7rem;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+    opacity: 0.7;
+  }
   .dict-entry .dict-sq {
     margin-top: 0.3rem;
     color: var(--text-muted);
@@ -2177,7 +2184,7 @@
     <div class="section-label fade-in">Reference Tool</div>
     <h2 class="section-title fade-in" id="dict-title">English → Albanian Dictionary</h2>
     <div class="divider fade-in"></div>
-    <p class="section-lead fade-in" id="dict-lead">A searchable digitisation of Idris Ruka's <em>English–Albanian Dictionary</em> (Tirana, 2006) — roughly 15,800 headwords with pronunciation guides and Albanian translations. Digitised via OCR from the original print edition, so occasional scanning artifacts may appear in older or rarer entries.</p>
+    <p class="section-lead fade-in" id="dict-lead">A searchable digitisation of Idris Ruka's <em>English–Albanian Dictionary</em> (Tirana, 2006) — roughly 15,800 headwords with pronunciation guides and Albanian translations. The several hundred most common everyday words carry hand-verified translations (marked ✓); the rest are from OCR of the print edition, so occasional scanning artifacts may appear in older or rarer entries.</p>
 
     <div class="dictionary-box fade-in">
       <div class="dict-toggle" role="group" aria-label="Dictionary direction">
@@ -3086,7 +3093,7 @@
         ipaKey: 'ipa',
         title: 'English → Albanian Dictionary',
         placeholder: 'Search an English word…',
-        lead: 'A searchable digitisation of Idris Ruka\'s <em>English–Albanian Dictionary</em> (Tirana, 2006) — roughly 15,800 headwords with pronunciation guides and Albanian translations. Digitised via OCR from the original print edition, so occasional scanning artifacts may appear in older or rarer entries.',
+        lead: 'A searchable digitisation of Idris Ruka\'s <em>English–Albanian Dictionary</em> (Tirana, 2006) — roughly 15,800 headwords with pronunciation guides and Albanian translations. The several hundred most common everyday words carry hand-verified translations (marked ✓); the rest are from OCR of the print edition, so occasional scanning artifacts may appear in older or rarer entries.',
         note: 'Source: Idris Ruka, <em>Fjalor Anglisht–Shqip</em>, Tirana, 2006. Digitised for non-commercial reference use.'
       },
       sq: {
@@ -3167,8 +3174,9 @@
       statusEl.textContent = combined.length + (combined.length === 40 ? '+ matches (showing first 40)' : ' match' + (combined.length === 1 ? '' : 'es'));
       resultsEl.innerHTML = combined.map(function (e) {
         var ipa = cfg.ipaKey && e[cfg.ipaKey] ? '<span class="dict-ipa">[' + escapeHtml(e[cfg.ipaKey]) + ']</span>' : '';
+        var badge = e.c ? '<span class="dict-verified" title="Hand-verified translation">✓</span>' : '';
         return '<div class="dict-entry">' +
-          '<span class="dict-word">' + escapeHtml(e[cfg.wordKey]) + '</span>' + ipa +
+          '<span class="dict-word">' + escapeHtml(e[cfg.wordKey]) + '</span>' + ipa + badge +
           '<div class="dict-sq">' + escapeHtml(e[cfg.glossKey]) + '</div>' +
           '</div>';
       }).join('');
