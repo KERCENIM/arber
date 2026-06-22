@@ -3096,8 +3096,8 @@
         ipaKey: null,
         title: 'Albanian → English Dictionary',
         placeholder: 'Search an Albanian word…',
-        lead: 'A searchable digitisation of Hysa\'s <em>Albanian–English Dictionary</em> (Hippocrene Books, 1993) — roughly 10,800 headwords with English glosses. Digitised via OCR from an older print edition, so scanning artifacts are more frequent here than in the English–Albanian direction above.',
-        note: 'Source: Hysa, <em>Albanian–English Dictionary</em>, Hippocrene Books, 1993. Digitised for non-commercial reference use.'
+        lead: 'A searchable digitisation of Hysa\'s <em>Albanian–English Dictionary</em> (Hippocrene Books, 1993) — about 15,300 headwords with English glosses. Reconstructed from the original print scan and machine-corrected against a 212,000-word Albanian wordlist; most headwords are verified, and the remainder stay findable through accent-insensitive search.',
+        note: 'Source: Ramazan Hysa, <em>Albanian–English Dictionary</em>, Hippocrene Books, 1993. Digitised for non-commercial reference use.'
       }
     };
 
@@ -3112,6 +3112,26 @@
       });
     }
 
+    // Accent-insensitive fold; digits left in place as "uncertain vowel" wildcards.
+    function fold(s) {
+      return s.toLowerCase()
+        .replace(/ë/g, 'e').replace(/ç/g, 'c')
+        .replace(/[àáâ]/g, 'a').replace(/[èéê]/g, 'e').replace(/[ìí]/g, 'i')
+        .replace(/[òó]/g, 'o').replace(/[ùú]/g, 'u');
+    }
+    function isVowel(c) { return c === 'a' || c === 'e' || c === 'i' || c === 'o' || c === 'u' || c === 'y'; }
+    // Does q match the start of key, allowing a digit in key to stand for any vowel?
+    function matchAt(key, q, off) {
+      if (off + q.length > key.length) return false;
+      for (var i = 0; i < q.length; i++) {
+        var kc = key[off + i], qc = q[i];
+        if (kc === qc) continue;
+        if (kc >= '0' && kc <= '9' && isVowel(qc)) continue;
+        return false;
+      }
+      return true;
+    }
+
     function render(query) {
       var cfg = DIRECTIONS[dir];
       var data = cache[dir];
@@ -3120,15 +3140,21 @@
         statusEl.textContent = '';
         return;
       }
-      var q = query.toLowerCase();
+      var q = fold(query);
       var starts = [];
       var includes = [];
       for (var i = 0; i < data.length; i++) {
-        var word = data[i][cfg.wordKey].toLowerCase();
-        if (word.indexOf(q) === 0) {
-          starts.push(data[i]);
-        } else if (word.indexOf(q) !== -1) {
-          includes.push(data[i]);
+        var d = data[i];
+        if (d._k === undefined) d._k = fold(d[cfg.wordKey]);
+        var key = d._k;
+        if (matchAt(key, q, 0)) {
+          starts.push(d);
+        } else {
+          var hit = false;
+          for (var off = 1; off + q.length <= key.length; off++) {
+            if (matchAt(key, q, off)) { hit = true; break; }
+          }
+          if (hit) includes.push(d);
         }
         if (starts.length >= 40) break;
       }
