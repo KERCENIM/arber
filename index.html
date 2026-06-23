@@ -144,16 +144,25 @@
   .hero-eagle {
     position: absolute;
     inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     pointer-events: none;
-    opacity: 0.04;
   }
 
   .hero-eagle img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: min(70vw, 600px);
     height: auto;
+  }
+
+  .hero-eagle-glow {
+    opacity: 0.16;
+    filter: blur(28px);
+  }
+
+  .hero-eagle-sharp {
+    opacity: 0.06;
   }
 
   .hero-tag {
@@ -1746,7 +1755,8 @@
 <!-- HERO -->
 <section class="hero">
   <div class="hero-eagle" aria-hidden="true">
-    <img src="hero-eagle.png" alt="" />
+    <img class="hero-eagle-glow" src="hero-eagle.png" alt="" />
+    <img class="hero-eagle-sharp" src="hero-eagle.png" alt="" />
   </div>
 
   <div class="hero-tag">Est. Albanian Heritage Research</div>
