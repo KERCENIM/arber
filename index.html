@@ -594,6 +594,95 @@
     line-height: 1.7;
   }
 
+  /* ALPHABET */
+  .alphabet-block {
+    margin-top: 4rem;
+  }
+
+  .alphabet-subhead {
+    font-family: 'EB Garamond', serif;
+    color: var(--text-muted);
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-size: 12px;
+    margin-bottom: 1.5rem;
+  }
+
+  .alphabet-grid {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    gap: 1px;
+    background: var(--border);
+    margin-bottom: 2.5rem;
+  }
+
+  .alphabet-cell {
+    background: var(--bg3);
+    padding: 1rem 0.4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    text-align: center;
+  }
+
+  .alphabet-cell .ab-letter {
+    font-family: 'EB Garamond', serif;
+    font-size: 1.35rem;
+    color: var(--text);
+  }
+
+  .alphabet-cell .ab-name {
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: 0.8rem;
+    color: var(--gold);
+  }
+
+  .alphabet-cell .ab-ipa {
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    font-family: 'Inter', sans-serif;
+  }
+
+  .gheg-vowel-note {
+    font-size: 13.5px;
+    color: var(--text-muted);
+    line-height: 1.75;
+    margin-bottom: 1.25rem;
+    max-width: 760px;
+  }
+
+  .gheg-vowel-grid {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    gap: 1px;
+    background: var(--border);
+  }
+
+  .gheg-vowel-cell {
+    background: var(--bg3);
+    padding: 0.85rem 0.4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    text-align: center;
+  }
+
+  .gheg-vowel-cell .ab-letter { font-size: 1.2rem; }
+
+  .alphabet-source {
+    font-size: 11.5px;
+    color: var(--text-dim);
+    margin-top: 1.25rem;
+  }
+
+  @media (max-width: 768px) {
+    .alphabet-grid, .gheg-vowel-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+
   /* RESEARCH */
   .research { background: var(--bg2); }
 
@@ -2184,6 +2273,71 @@
           </div>
         </div>
       </div>
+    </div>
+
+    <div class="alphabet-block">
+      <h3 class="alphabet-subhead">Albanian alphabet &amp; pronunciation — Standard / Tosk</h3>
+      <div class="alphabet-grid">
+        <div class="alphabet-cell"><div class="ab-letter">A a</div><div class="ab-name">a</div><div class="ab-ipa">[a]</div></div>
+        <div class="alphabet-cell"><div class="ab-letter">B b</div><div class="ab-name">bë</div><div class="ab-ipa">[b]</div></div>
+        <div class="alphabet-cell"><div class="ab-letter">C c</div><div class="ab-name">cë</div><div class="ab-ipa">[ts]</div></div>
+        <div class="alphabet-cell"><div class="ab-letter">Ç ç</div><div class="ab-name">çë</div><div class="ab-ipa">[tʃ]</div></div>
+        <div class="alphabet-cell"><div class="ab-letter">D d</div><div class="ab-name">dë</div><div class="ab-ipa">[d]</div></div>
+        <div class="alphabet-cell"><div class="ab-letter">Dh dh</div><div class="ab-name">dhë</div><div class="ab-ipa">[ð]</div></div>
+        <div class="alphabet-cell"><div class="ab-letter">E e</div><div class="ab-name">e</div><div class="ab-ipa">[ɛ]</div></div>
+        <div class="alphabet-cell"><div class="ab-letter">Ë ë</div><div class="ab-name">ë</div><div class="ab-ipa">[ə]</div></div>
+        <div class="alphabet-cell"><div class="ab-letter">F f</div><div class="ab-name">fë</div><div class="ab-ipa">[f]</div></div>
+        <div class="alphabet-cell"><div class="ab-letter">G g</div><div class="ab-name">gë</div><div class="ab-ipa">[g]</div></div>
+        <div class="alphabet-cell"><div class="ab-letter">Gj gj</div><div class="ab-name">gjë</div><div class="ab-ipa">[ɟ]</div></div>
+        <div class="alphabet-cell"><div class="ab-letter">H h</div><div class="ab-name">hë</div><div class="ab-ipa">[h]</div></div>
+        <div class="alphabet-cell"><div class="ab-letter">I i</div><div class="ab-name">i</div><div class="ab-ipa">[i, j]</div></div>
+        <div class="alphabet-cell"><div class="ab-letter">J j</div><div class="ab-name">jë</div><div class="ab-ipa">[j]</div></div>
+        <div class="alphabet-cell"><div class="ab-letter">K k</div><div class="ab-name">kë</div><div class="ab-ipa">[k]</div></div>
+        <div class="alphabet-cell"><div class="ab-letter">L l</div><div class="ab-name">lë</div><div class="ab-ipa">[l]</div></div>
+        <div class="alphabet-cell"><div class="ab-letter">Ll ll</div><div class="ab-name">llë</div><div class="ab-ipa">[l]</div></div>
+        <div class="alphabet-cell"><div class="ab-letter">M m</div><div class="ab-name">më</div><div class="ab-ipa">[m]</div></div>
+        <div class="alphabet-cell"><div class="ab-letter">N n</div><div class="ab-name">në</div><div class="ab-ipa">[n]</div></div>
+        <div class="alphabet-cell"><div class="ab-letter">Nj nj</div><div class="ab-name">një</div><div class="ab-ipa">[ɲ]</div></div>
+        <div class="alphabet-cell"><div class="ab-letter">O o</div><div class="ab-name">o</div><div class="ab-ipa">[ɔ]</div></div>
+        <div class="alphabet-cell"><div class="ab-letter">P p</div><div class="ab-name">pë</div><div class="ab-ipa">[p]</div></div>
+        <div class="alphabet-cell"><div class="ab-letter">Q q</div><div class="ab-name">që</div><div class="ab-ipa">[c]</div></div>
+        <div class="alphabet-cell"><div class="ab-letter">R r</div><div class="ab-name">rë</div><div class="ab-ipa">[ɾ]</div></div>
+        <div class="alphabet-cell"><div class="ab-letter">Rr rr</div><div class="ab-name">rrë</div><div class="ab-ipa">[r]</div></div>
+        <div class="alphabet-cell"><div class="ab-letter">S s</div><div class="ab-name">së</div><div class="ab-ipa">[s]</div></div>
+        <div class="alphabet-cell"><div class="ab-letter">Sh sh</div><div class="ab-name">shë</div><div class="ab-ipa">[ʃ]</div></div>
+        <div class="alphabet-cell"><div class="ab-letter">T t</div><div class="ab-name">të</div><div class="ab-ipa">[t]</div></div>
+        <div class="alphabet-cell"><div class="ab-letter">Th th</div><div class="ab-name">thë</div><div class="ab-ipa">[θ]</div></div>
+        <div class="alphabet-cell"><div class="ab-letter">U u</div><div class="ab-name">u</div><div class="ab-ipa">[u]</div></div>
+        <div class="alphabet-cell"><div class="ab-letter">V v</div><div class="ab-name">vë</div><div class="ab-ipa">[v]</div></div>
+        <div class="alphabet-cell"><div class="ab-letter">X x</div><div class="ab-name">xë</div><div class="ab-ipa">[dz]</div></div>
+        <div class="alphabet-cell"><div class="ab-letter">Xh xh</div><div class="ab-name">xhë</div><div class="ab-ipa">[dʒ]</div></div>
+        <div class="alphabet-cell"><div class="ab-letter">Y y</div><div class="ab-name">y</div><div class="ab-ipa">[y]</div></div>
+        <div class="alphabet-cell"><div class="ab-letter">Z z</div><div class="ab-name">zë</div><div class="ab-ipa">[z]</div></div>
+        <div class="alphabet-cell"><div class="ab-letter">Zh zh</div><div class="ab-name">zhë</div><div class="ab-ipa">[ʒ]</div></div>
+      </div>
+
+      <h3 class="alphabet-subhead">Gheg dialect — vowels</h3>
+      <p class="gheg-vowel-note">The main phonological differences between Gheg and Tosk lie in vowel pronunciation, and Gheg's use of nasalization (largely lost in Tosk and Standard Albanian).</p>
+      <div class="gheg-vowel-grid">
+        <div class="gheg-vowel-cell"><div class="ab-letter">a</div><div class="ab-ipa">[a]</div></div>
+        <div class="gheg-vowel-cell"><div class="ab-letter">â</div><div class="ab-ipa">[ɑ]</div></div>
+        <div class="gheg-vowel-cell"><div class="ab-letter">ä</div><div class="ab-ipa">[ɒ]</div></div>
+        <div class="gheg-vowel-cell"><div class="ab-letter">e</div><div class="ab-ipa">[e]</div></div>
+        <div class="gheg-vowel-cell"><div class="ab-letter">ê</div><div class="ab-ipa">[ɛ]</div></div>
+        <div class="gheg-vowel-cell"><div class="ab-letter">ë</div><div class="ab-ipa">[ə]</div></div>
+        <div class="gheg-vowel-cell"><div class="ab-letter">i</div><div class="ab-ipa">[i]</div></div>
+        <div class="gheg-vowel-cell"><div class="ab-letter">o</div><div class="ab-ipa">[o]</div></div>
+        <div class="gheg-vowel-cell"><div class="ab-letter">ô</div><div class="ab-ipa">[ɔ]</div></div>
+        <div class="gheg-vowel-cell"><div class="ab-letter">u</div><div class="ab-ipa">[u]</div></div>
+        <div class="gheg-vowel-cell"><div class="ab-letter">y</div><div class="ab-ipa">[y]</div></div>
+        <div class="gheg-vowel-cell"><div class="ab-letter">ã</div><div class="ab-ipa">[ã]</div></div>
+        <div class="gheg-vowel-cell"><div class="ab-letter">ẽ</div><div class="ab-ipa">[ɛ̃]</div></div>
+        <div class="gheg-vowel-cell"><div class="ab-letter">ĩ</div><div class="ab-ipa">[ĭ]</div></div>
+        <div class="gheg-vowel-cell"><div class="ab-letter">õ</div><div class="ab-ipa">[õ]</div></div>
+        <div class="gheg-vowel-cell"><div class="ab-letter">ũ</div><div class="ab-ipa">[ũ]</div></div>
+        <div class="gheg-vowel-cell"><div class="ab-letter">ỹ</div><div class="ab-ipa">[ỹ]</div></div>
+      </div>
+      <div class="alphabet-source">Source: Omniglot.com, "Albanian alphabet and pronunciation."</div>
     </div>
   </div>
 </section>
