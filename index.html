@@ -111,7 +111,7 @@
     transition: color 0.2s;
   }
 
-  .nav-links a:hover { color: var(--text); }
+  .nav-links a:hover, .nav-links a.active { color: var(--text); }
 
   .nav-x {
     display: flex;
@@ -917,7 +917,7 @@
   }
 
   .mobile-menu a:last-child { border-bottom: none; }
-  .mobile-menu a:hover { color: var(--text); }
+  .mobile-menu a:hover, .mobile-menu a.active { color: var(--text); }
 
   /* MOBILE SCROLLING NAV STRIP (shown only on mobile) */
   .mobile-navbar { display: none; }
@@ -2986,6 +2986,27 @@
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Scroll-spy: highlight the nav link for whichever section is in view.
+  const navSectionIds = ['history','genetics','linguistics','dictionary','posts','research','contribute'];
+  const navAnchors = document.querySelectorAll('.nav-links a[href^="#"], .mobile-navbar a[href^="#"], .mobile-menu a[href^="#"]');
+
+  function setActiveNav(id) {
+    navAnchors.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + id);
+    });
+  }
+
+  const navSpyObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) setActiveNav(entry.target.id);
+    });
+  }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+
+  navSectionIds.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) navSpyObserver.observe(el);
+  });
 </script>
 
 <!-- Interactive Y-DNA map -->
