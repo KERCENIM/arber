@@ -8,10 +8,10 @@
 (function () {
   var ROOMS = [
     { id: 'about',       name: 'The Question',   sub: 'About',       acc: '#5fe8c4' },
-    { id: 'history',     name: 'The Chronicle',  sub: 'History',     acc: '#f0c860' },
+    { id: 'history',     name: 'The Chronicle',  sub: 'History',     acc: '#e0556a' },
     { id: 'genetics',    name: 'The Bloodline',  sub: 'Genetics',    acc: '#5fe8c4' },
     { id: 'linguistics', name: 'The Tongue',     sub: 'Linguistics', acc: '#c89aff' },
-    { id: 'dictionary',  name: 'The Lexicon',    sub: 'Dictionary',  acc: '#ff9a6a' },
+    { id: 'dictionary',  name: 'The Lexicon',    sub: 'Dictionary',  acc: '#5fe8c4' },
     { id: 'research',    name: 'The Study',      sub: 'Research',     acc: '#6ab8ff' },
     { id: 'posts',       name: 'The Dispatches', sub: 'Posts',        acc: '#e0556a' },
     { id: 'contribute',  name: 'The Atlas',      sub: 'Map Yourself', acc: '#7ad88a' }

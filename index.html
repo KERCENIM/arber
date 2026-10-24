@@ -3455,7 +3455,6 @@
 <!-- PIXEL GATE INTRO -->
 <div id="arb-intro" aria-hidden="true">
   <div class="arb-iview">
-    <button class="arb-iskip" id="arb-skip" type="button">Skip &#9654;</button>
     <div class="arb-iboot" id="arb-boot"></div>
     <div class="arb-ititle" id="arb-title">
       <svg viewBox="0 0 680 520" preserveAspectRatio="xMidYMid meet" shape-rendering="crispEdges" aria-hidden="true">
@@ -3522,15 +3521,12 @@
   function showIntro(){intro.classList.remove('gone');document.body.style.overflow='hidden';runBoot();}
   function hideIntro(enter){try{localStorage.setItem('arb_seen','1');}catch(e){}intro.classList.add('gone');document.body.style.overflow='';if(enter)chime();}
   document.getElementById('arb-enter').addEventListener('click',function(){hideIntro(true);});
-  document.getElementById('arb-skip').addEventListener('click',function(){hideIntro(false);});
   var crtOn=true; try{if(localStorage.getItem('arb_crt')==='0')crtOn=false;}catch(e){}
   function applyCRT(){document.body.classList.toggle('nocrt',!crtOn);var b=document.getElementById('arb-crt');if(b)b.textContent=crtOn?'Scanlines: On':'Scanlines: Off';}
   applyCRT();
   document.getElementById('arb-crt').addEventListener('click',function(){crtOn=!crtOn;try{localStorage.setItem('arb_crt',crtOn?'1':'0');}catch(e){}applyCRT();});
   document.getElementById('arb-replay').addEventListener('click',function(){showIntro();});
-  var seen=false; try{seen=localStorage.getItem('arb_seen')==='1';}catch(e){}
-  if(seen||(location.hash&&location.hash.length>1)){intro.classList.add('gone');}
-  else{showIntro();}
+  showIntro();
 })();
 </script>
 <script src="game.js"></script>

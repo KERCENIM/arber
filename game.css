@@ -33,7 +33,7 @@ body.game-mode > footer{display:none!important}
   font-family:var(--read);font-size:1.75rem;line-height:1.5;color:#c8b8f0;letter-spacing:.08em;
   text-transform:uppercase;padding:3px 10px 3px 46px;position:relative}
 .gm-item.sel,.gm-item:hover,.gm-item:focus-visible{color:var(--gold2);outline:none}
-.gm-item.sel::before,.gm-item:hover::before,.gm-item:focus-visible::before{content:'\25BA';position:absolute;left:14px;color:var(--cyan)}
+.gm-item.sel::before,.gm-item:hover::before,.gm-item:focus-visible::before{content:'\25BA';position:absolute;left:14px;color:var(--red-light)}
 .gm-hint{margin-top:14px;font-family:var(--read);font-size:1rem;color:var(--text-dim);letter-spacing:.14em;text-transform:uppercase}
 
 /* ---------- ROOMS ---------- */
