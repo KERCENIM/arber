@@ -290,3 +290,24 @@ body.nocrt .crt-lines,body.nocrt .crt-vig{display:none}
   .arb-scene .arb-star:nth-child(6){animation-duration:3.7s;animation-delay:-.5s}
   @keyframes arb-twinkle{0%,100%{opacity:.25}50%{opacity:1}}
 }
+
+/* ============================================================
+   GATE: knights hold crossed swords; ENTER swings the doors
+   open (and parts the swords), revealing warm torchlight.
+   Positioning is always-on; only the transitions are motion.
+   ============================================================ */
+.arb-scene .arb-sword{transform-box:view-box;transform-origin:0 0;transition:transform .8s cubic-bezier(.55,0,.25,1)}
+.arb-scene .arb-sword-l{transform:translate(214px,356px) rotate(60deg)}
+.arb-scene .arb-sword-r{transform:translate(466px,356px) rotate(-60deg)}
+
+.arb-scene .arb-door-l{transform-box:fill-box;transform-origin:0% 50%}
+.arb-scene .arb-door-r{transform-box:fill-box;transform-origin:100% 50%}
+.arb-scene .arb-door{transition:transform .95s cubic-bezier(.5,0,.2,1)}
+.arb-scene .arb-gate-glow{transition:opacity 1s ease}
+
+/* the open state (only while the intro is mid-ENTER) */
+#arb-intro.gate-open .arb-door-l{transform:scaleX(.04)}
+#arb-intro.gate-open .arb-door-r{transform:scaleX(.04)}
+#arb-intro.gate-open .arb-gate-glow{opacity:.95}
+#arb-intro.gate-open .arb-sword-l{transform:translate(214px,356px) rotate(14deg)}
+#arb-intro.gate-open .arb-sword-r{transform:translate(466px,356px) rotate(-14deg)}

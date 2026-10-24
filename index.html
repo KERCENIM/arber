@@ -3468,6 +3468,7 @@
       <svg class="arb-scene" viewBox="0 0 680 520" preserveAspectRatio="xMidYMax slice" shape-rendering="crispEdges" aria-hidden="true">
         <defs>
           <linearGradient id="arb-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1a0d36"/><stop offset="0.6" stop-color="#2a1250"/><stop offset="1" stop-color="#5a1f52"/></linearGradient>
+          <radialGradient id="arb-glow" cx="50%" cy="48%" r="60%"><stop offset="0" stop-color="#ffe6a6"/><stop offset="0.4" stop-color="#f0a638"/><stop offset="1" stop-color="#f0a638" stop-opacity="0"/></radialGradient>
           <pattern id="arb-stone" width="112" height="80" patternUnits="userSpaceOnUse"><rect width="112" height="80" fill="#17162a"/><rect x="2" y="2" width="52" height="36" fill="#2c2b44"/><rect x="2" y="2" width="52" height="3" fill="#3c3a5c"/><rect x="2" y="35" width="52" height="3" fill="#121122"/><rect x="58" y="2" width="52" height="36" fill="#302e4a"/><rect x="58" y="2" width="52" height="3" fill="#403e62"/><rect x="58" y="35" width="52" height="3" fill="#121122"/><rect x="-26" y="42" width="52" height="36" fill="#302e4a"/><rect x="30" y="42" width="52" height="36" fill="#2c2b44"/><rect x="86" y="42" width="52" height="36" fill="#302e4a"/><rect x="30" y="42" width="52" height="3" fill="#403e62"/><rect x="30" y="75" width="52" height="3" fill="#121122"/></pattern>
           <g id="arb-peagle"><rect x="6" y="2" width="3" height="3"/><rect x="13" y="2" width="3" height="3"/><rect x="9" y="4" width="4" height="9"/><rect x="4" y="6" width="4" height="3"/><rect x="14" y="6" width="4" height="3"/><rect x="1" y="9" width="4" height="3"/><rect x="17" y="9" width="4" height="3"/><rect x="7" y="13" width="2" height="4"/><rect x="13" y="13" width="2" height="4"/></g>
           <g id="arb-knight">
@@ -3503,12 +3504,16 @@
         <g class="arb-banner arb-banner-l"><rect x="140" y="150" width="34" height="62" fill="#c42a3a"/><rect x="140" y="150" width="34" height="4" fill="#e0405a"/><polygon points="140,212 157,224 174,212" fill="#8a1020"/><g transform="translate(146,166) scale(1.1)" fill="#1a0e14"><use href="#arb-peagle"/></g></g>
         <g class="arb-banner arb-banner-r"><rect x="506" y="150" width="34" height="62" fill="#c42a3a"/><rect x="506" y="150" width="34" height="4" fill="#e0405a"/><polygon points="506,212 523,224 540,212" fill="#8a1020"/><g transform="translate(512,166) scale(1.1)" fill="#1a0e14"><use href="#arb-peagle"/></g></g>
         <rect x="235" y="150" width="30" height="50" fill="#1a1930"/><rect x="415" y="150" width="30" height="50" fill="#1a1930"/>
-        <g clip-path="url(#arb-arch)"><rect x="283" y="160" width="114" height="270" fill="#3a2414"/><rect x="300" y="170" width="6" height="260" fill="#241406"/><rect x="330" y="170" width="6" height="260" fill="#241406"/><rect x="360" y="170" width="6" height="260" fill="#241406"/><rect x="380" y="170" width="6" height="260" fill="#241406"/><rect x="292" y="168" width="7" height="262" fill="#3b3b4e"/><rect x="315" y="168" width="7" height="262" fill="#3b3b4e"/><rect x="338" y="168" width="7" height="262" fill="#3b3b4e"/><rect x="361" y="168" width="7" height="262" fill="#3b3b4e"/><rect x="384" y="168" width="7" height="262" fill="#3b3b4e"/><rect x="283" y="196" width="114" height="7" fill="#3b3b4e"/><rect x="283" y="250" width="114" height="7" fill="#3b3b4e"/><rect x="283" y="304" width="114" height="7" fill="#3b3b4e"/></g>
+        <g clip-path="url(#arb-arch)">
+          <rect x="283" y="156" width="114" height="276" fill="#0b0710"/>
+          <ellipse class="arb-gate-glow" cx="340" cy="320" rx="82" ry="162" fill="url(#arb-glow)" opacity="0"/>
+          <g class="arb-door arb-door-l"><rect x="283" y="160" width="58" height="270" fill="#3a2414"/><rect x="300" y="170" width="6" height="260" fill="#241406"/><rect x="330" y="170" width="6" height="260" fill="#241406"/><rect x="292" y="168" width="7" height="262" fill="#3b3b4e"/><rect x="315" y="168" width="7" height="262" fill="#3b3b4e"/><rect x="336" y="168" width="6" height="262" fill="#2e2e40"/><rect x="283" y="196" width="58" height="7" fill="#3b3b4e"/><rect x="283" y="250" width="58" height="7" fill="#3b3b4e"/><rect x="283" y="304" width="58" height="7" fill="#3b3b4e"/></g>
+          <g class="arb-door arb-door-r"><rect x="339" y="160" width="58" height="270" fill="#3a2414"/><rect x="360" y="170" width="6" height="260" fill="#241406"/><rect x="380" y="170" width="6" height="260" fill="#241406"/><rect x="361" y="168" width="7" height="262" fill="#3b3b4e"/><rect x="384" y="168" width="7" height="262" fill="#3b3b4e"/><rect x="339" y="196" width="58" height="7" fill="#3b3b4e"/><rect x="339" y="250" width="58" height="7" fill="#3b3b4e"/><rect x="339" y="304" width="58" height="7" fill="#3b3b4e"/></g>
+        </g>
         <path d="M278,432 L278,208 Q278,156 340,156 Q402,156 402,208 L402,432" fill="none" stroke="#14121f" stroke-width="8"/><path d="M278,432 L278,208 Q278,156 340,156 Q402,156 402,208 L402,432" fill="none" stroke="#4a4660" stroke-width="2"/>
         <g transform="translate(236,150)"><rect x="-3" y="0" width="6" height="22" fill="#2e1c0c"/><rect x="-6" y="-14" width="12" height="16" fill="#ff9a2e"/><rect x="-4" y="-22" width="8" height="12" fill="#ffd24a"/><rect x="-2" y="-28" width="4" height="8" fill="#fff0b0"/></g>
         <g transform="translate(444,150)"><rect x="-3" y="0" width="6" height="22" fill="#2e1c0c"/><rect x="-6" y="-14" width="12" height="16" fill="#ff9a2e"/><rect x="-4" y="-22" width="8" height="12" fill="#ffd24a"/><rect x="-2" y="-28" width="4" height="8" fill="#fff0b0"/></g>
-        <g class="arb-knight-bob"><use href="#arb-knight" transform="translate(120,210)"/></g><g class="arb-knight-bob r"><use href="#arb-knight" transform="translate(560,210) scale(-1,1)"/></g>
-        <use href="#arb-sword" transform="translate(280,470) rotate(42)"/><use href="#arb-sword" transform="translate(400,470) rotate(-42)"/>
+        <g class="arb-knight-bob"><use href="#arb-knight" transform="translate(120,210)"/><use class="arb-sword arb-sword-l" href="#arb-sword"/></g><g class="arb-knight-bob r"><use href="#arb-knight" transform="translate(560,210) scale(-1,1)"/><use class="arb-sword arb-sword-r" href="#arb-sword"/></g>
         <rect x="0" y="508" width="680" height="12" fill="#0d0820"/>
       </svg>
       <div class="arb-foot"><button class="arb-ibtn" id="arb-enter" type="button">&#9654; ENTER</button><div class="arb-prompt">Pass the guard to begin</div></div>
@@ -3526,9 +3531,14 @@
   function chime(){[392,523,659,880].forEach(function(f,i){setTimeout(function(){tone(f,.13,'square',.05);},i*80);});}
   var BOOT=['ARBËRIKON SYSTEM  v1.0','(c) MMXXVI  KEEP OF THE ARBËR','','> LOADING KEEP.DAT ...... <span class="ok">OK</span>','> MUSTERING THE GUARD ... <span class="ok">OK</span>','> RAISING THE BANNERS ... <span class="ok">OK</span>','','READY<span class="cur">_</span>'];
   function runBoot(){boot.innerHTML='';boot.style.opacity='1';title.classList.remove('on');intro.classList.remove('gate-shown');var i=0;(function step(){if(i<BOOT.length){var d=document.createElement('div');d.innerHTML=BOOT[i]||'&nbsp;';boot.appendChild(d);i++;setTimeout(step,i<6?150:230);}else{setTimeout(function(){boot.style.opacity='0';title.classList.add('on');intro.classList.add('gate-shown');},650);}})();}
-  function showIntro(){intro.classList.remove('gone');document.body.style.overflow='hidden';runBoot();}
+  function showIntro(){intro.classList.remove('gone');intro.classList.remove('gate-open');document.body.style.overflow='hidden';runBoot();}
   function hideIntro(enter){try{localStorage.setItem('arb_seen','1');}catch(e){}intro.classList.add('gone');document.body.style.overflow='';if(enter)chime();}
-  document.getElementById('arb-enter').addEventListener('click',function(){hideIntro(true);});
+  document.getElementById('arb-enter').addEventListener('click',function(){
+    if(intro.classList.contains('gate-open'))return;
+    intro.classList.add('gate-open');chime();
+    setTimeout(function(){tone(220,.5,'sawtooth',.03);},120); // low rumble as the gate swings
+    setTimeout(function(){hideIntro(false);},1050);
+  });
   var crtOn=true; try{if(localStorage.getItem('arb_crt')==='0')crtOn=false;}catch(e){}
   function applyCRT(){document.body.classList.toggle('nocrt',!crtOn);var b=document.getElementById('arb-crt');if(b)b.textContent=crtOn?'Scanlines: On':'Scanlines: Off';}
   applyCRT();
