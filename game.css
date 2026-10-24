@@ -1,0 +1,71 @@
+/* ============================================================
+   ARBËRIKON — GAME MODE
+   Turns the site into a boot -> gate -> "SELECT YOUR PATH"
+   menu -> rooms experience. Each room is one real <section>
+   with all its real content and JS intact. Layered on top of
+   pixel-theme.css. Activated by body.game-mode (added in game.js).
+   ============================================================ */
+
+body.game-mode{overflow:hidden;height:100vh}
+body.game-mode > nav,
+body.game-mode .mobile-navbar,
+body.game-mode #mobile-menu,
+body.game-mode .hero,
+body.game-mode .quote-section,
+body.game-mode > footer{display:none!important}
+
+/* dimmed gate backdrop behind menu + rooms */
+#game-bg{position:fixed;inset:0;z-index:0;overflow:hidden;background:#0a0618}
+#game-bg svg{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:118%;height:118%;
+  image-rendering:pixelated;filter:brightness(.5) saturate(.85)}
+#game-bg::after{content:'';position:absolute;inset:0;background:rgba(8,5,20,.5)}
+
+/* ---------- MENU ---------- */
+#game-menu{position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;padding:18px}
+#game-menu.hidden{display:none}
+.gm-panel{position:relative;background:rgba(8,5,20,.93);border:3px solid var(--cyan);
+  box-shadow:0 0 0 3px #140a28,8px 8px 0 rgba(0,0,0,.6);padding:24px 40px 28px;
+  max-width:min(540px,92vw);max-height:90vh;overflow:auto;text-align:center}
+.gm-brand{font-family:var(--pix);font-size:1.05rem;color:var(--gold2);text-shadow:2px 2px 0 #000;letter-spacing:.04em;margin-bottom:8px}
+.gm-head{font-family:var(--read);font-size:1.4rem;color:var(--cyan);letter-spacing:.24em;margin-bottom:16px}
+.gm-list{display:inline-block;text-align:left}
+.gm-item{display:block;width:100%;text-align:left;background:none;border:0;cursor:pointer;
+  font-family:var(--read);font-size:1.75rem;line-height:1.5;color:#c8b8f0;letter-spacing:.08em;
+  text-transform:uppercase;padding:3px 10px 3px 46px;position:relative}
+.gm-item.sel,.gm-item:hover,.gm-item:focus-visible{color:var(--gold2);outline:none}
+.gm-item.sel::before,.gm-item:hover::before,.gm-item:focus-visible::before{content:'\25BA';position:absolute;left:14px;color:var(--cyan)}
+.gm-hint{margin-top:14px;font-family:var(--read);font-size:1rem;color:var(--text-dim);letter-spacing:.14em;text-transform:uppercase}
+
+/* ---------- ROOMS ---------- */
+body.game-mode section[data-room]{position:fixed;inset:14px;z-index:60;display:none;overflow-y:auto;
+  background:rgba(13,8,26,.975);border:3px solid var(--racc,var(--cyan));
+  box-shadow:0 0 0 3px #0b0718,0 20px 60px rgba(0,0,0,.6);padding:14px 20px 44px!important;margin:0!important}
+body.game-mode section[data-room].room-open{display:block;animation:arbroomin .3s ease}
+@keyframes arbroomin{from{opacity:0;transform:scale(.995)}to{opacity:1;transform:none}}
+body.game-mode section[data-room]::-webkit-scrollbar{width:10px}
+body.game-mode section[data-room]::-webkit-scrollbar-thumb{background:var(--racc,var(--cyan))}
+body.game-mode section[data-room] .container{max-width:920px!important;margin:0 auto!important;padding:0 6px!important}
+
+.room-header{display:none;text-align:center;padding:6px 0 18px;border-bottom:2px solid var(--line);margin-bottom:22px}
+body.game-mode .room-open .room-header{display:block}
+.room-title{font-family:var(--pix);font-size:1.25rem;color:var(--racc,var(--gold2));text-shadow:3px 3px 0 #000;letter-spacing:.04em;line-height:1.5}
+.room-sub{font-family:var(--read);font-size:1.1rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:.2em;margin-top:8px}
+
+#game-back{position:fixed;top:14px;right:14px;z-index:90;display:none;
+  font-family:var(--pix);font-size:.6rem;color:#c8b8f0;background:#2a1b4e;border:2px solid var(--line);
+  box-shadow:3px 3px 0 #0b0718;padding:11px 14px;cursor:pointer}
+#game-back:hover{color:var(--gold2)}
+body.game-mode.room-active #game-back{display:block}
+
+/* content polish inside rooms */
+body.game-mode .fade-in{opacity:1!important;transform:none!important}
+body.game-mode #dna-map{min-height:460px}
+body.game-mode section[data-room] .section-label{margin-top:0}
+
+@media(max-width:640px){
+  .gm-panel{padding:20px 22px 24px}
+  .gm-item{font-size:1.5rem;padding-left:38px}
+  .gm-head{font-size:1.2rem;letter-spacing:.16em}
+  body.game-mode section[data-room]{inset:8px;padding:12px 12px 40px!important}
+  #game-back{top:8px;right:8px}
+}
