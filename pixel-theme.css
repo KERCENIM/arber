@@ -251,4 +251,6 @@ body.nocrt .crt-lines,body.nocrt .crt-vig{display:none}
   /* phones: boot keeps its bordered box, but the gate (home page) goes full-screen */
   #arb-intro.gate-shown{padding:0}
   #arb-intro.gate-shown .arb-iview{width:100%;height:100%;max-height:none;aspect-ratio:auto;border-radius:0;box-shadow:none}
+  /* phones: show the whole gate scene (both knights) instead of cropping the sides */
+  #arb-intro.gate-shown .arb-ititle svg.arb-scene{inset:auto;top:50%;left:0;right:0;width:100%;height:auto;transform:translateY(-50%)}
 }
