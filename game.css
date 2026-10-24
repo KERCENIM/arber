@@ -15,10 +15,14 @@ body.game-mode .quote-section,
 body.game-mode > footer{display:none!important}
 
 /* dimmed gate backdrop behind menu + rooms */
-/* solid black surround everywhere inside the keep — menu and rooms both float on black */
-#game-bg{position:fixed;inset:0;z-index:0;overflow:hidden;background:#000}
-#game-bg svg{display:none}
-#game-bg::after{display:none}
+/* menu shows the dimmed gate (knights + castle) behind it; rooms go solid black */
+#game-bg{position:fixed;inset:0;z-index:0;overflow:hidden;background:#0a0618}
+#game-bg svg{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:118%;height:118%;
+  image-rendering:pixelated;filter:brightness(.55) saturate(.9)}
+#game-bg::after{content:'';position:absolute;inset:0;background:rgba(8,5,20,.42)}
+body.game-mode.room-active #game-bg{background:#000}
+body.game-mode.room-active #game-bg svg{display:none}
+body.game-mode.room-active #game-bg::after{display:none}
 
 /* ---------- MENU ---------- */
 #game-menu{position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;padding:18px}
