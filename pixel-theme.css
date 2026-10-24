@@ -254,3 +254,39 @@ body.nocrt .crt-lines,body.nocrt .crt-vig{display:none}
   /* phones: show the whole gate scene (both knights) instead of cropping the sides */
   #arb-intro.gate-shown .arb-ititle svg.arb-scene{inset:auto;top:50%;left:0;right:0;width:100%;height:auto;transform:translateY(-50%)}
 }
+
+/* ============================================================
+   GATE SCENE — subtle idle animation (knights, banners, flag,
+   moon, stars). Transforms/opacity only; honors reduced-motion.
+   ============================================================ */
+@media (prefers-reduced-motion: no-preference){
+  /* knights: slow breathing bob, slightly out of sync */
+  .arb-scene .arb-knight-bob{animation:arb-bob 3.4s ease-in-out infinite;will-change:transform}
+  .arb-scene .arb-knight-bob.r{animation-duration:3.9s;animation-delay:-1.3s}
+  @keyframes arb-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-2.5px)}}
+
+  /* banners: gentle sway from the top anchor */
+  .arb-scene .arb-banner{transform-box:fill-box;transform-origin:50% 0;animation:arb-sway 4.8s ease-in-out infinite;will-change:transform}
+  .arb-scene .arb-banner-r{animation-duration:5.4s;animation-delay:-1.9s}
+  @keyframes arb-sway{0%,100%{transform:rotate(-1.6deg)}50%{transform:rotate(1.6deg)}}
+
+  /* tower flag: waves from the pole side */
+  .arb-scene .arb-flag{transform-box:fill-box;transform-origin:0 50%;animation:arb-flag 2.6s ease-in-out infinite;will-change:transform}
+  @keyframes arb-flag{0%,100%{transform:skewX(-7deg) scaleX(.96)}50%{transform:skewX(7deg) scaleX(1)}}
+
+  /* moon: faint breathing glow + barely-there pulse */
+  .arb-scene .arb-moon-glow{animation:arb-glow 5.6s ease-in-out infinite}
+  @keyframes arb-glow{0%,100%{opacity:.08}50%{opacity:.24}}
+  .arb-scene .arb-moon{transform-box:fill-box;transform-origin:50% 50%;animation:arb-breathe 6.5s ease-in-out infinite}
+  @keyframes arb-breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.025)}}
+
+  /* stars: staggered twinkle */
+  .arb-scene .arb-star{animation:arb-twinkle 3.2s ease-in-out infinite}
+  .arb-scene .arb-star:nth-child(1){animation-duration:2.7s;animation-delay:-.2s}
+  .arb-scene .arb-star:nth-child(2){animation-duration:3.5s;animation-delay:-1.4s}
+  .arb-scene .arb-star:nth-child(3){animation-duration:2.9s;animation-delay:-.8s}
+  .arb-scene .arb-star:nth-child(4){animation-duration:4.1s;animation-delay:-2.3s}
+  .arb-scene .arb-star:nth-child(5){animation-duration:3.1s;animation-delay:-1.9s}
+  .arb-scene .arb-star:nth-child(6){animation-duration:3.7s;animation-delay:-.5s}
+  @keyframes arb-twinkle{0%,100%{opacity:.25}50%{opacity:1}}
+}
