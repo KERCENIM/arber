@@ -41,9 +41,9 @@ body.game-mode.room-active #game-bg::after{display:none}
 .gm-hint{margin-top:14px;font-family:var(--read);font-size:1rem;color:var(--text-dim);letter-spacing:.14em;text-transform:uppercase}
 
 /* ---------- ROOMS ---------- */
-body.game-mode section[data-room]{position:fixed;top:22px;bottom:22px;left:50%;transform:translateX(-50%);width:min(1000px,94vw);z-index:60;display:none;overflow-y:auto;
+body.game-mode section[data-room]{position:fixed;top:22px;bottom:22px;left:0;right:0;width:min(1000px,94vw);margin:0 auto!important;z-index:60;display:none;overflow-y:auto;overflow-x:hidden;
   background:rgba(13,8,26,.99);border:3px solid var(--racc,var(--cyan));border-radius:14px;
-  box-shadow:0 0 0 2px #000,inset 0 0 55px rgba(0,0,0,.7),0 24px 70px rgba(0,0,0,.7);padding:16px 22px 46px!important;margin:0!important}
+  box-shadow:0 0 0 2px #000,inset 0 0 55px rgba(0,0,0,.7),0 24px 70px rgba(0,0,0,.7);padding:16px 22px 46px!important}
 body.game-mode section[data-room].room-open{display:block;animation:arbroomin .3s ease}
 @keyframes arbroomin{from{opacity:0}to{opacity:1}}
 body.game-mode section[data-room]::-webkit-scrollbar{width:10px}

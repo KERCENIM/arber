@@ -248,4 +248,7 @@ body.nocrt .crt-lines,body.nocrt .crt-vig{display:none}
   .arb-hud-l{left:12px}.arb-hud-r{right:12px}
   .arb-head{top:46px;padding:0 14px}
   .arb-h2{letter-spacing:.2em}
+  /* phones: boot keeps its bordered box, but the gate (home page) goes full-screen */
+  #arb-intro.gate-shown{padding:0}
+  #arb-intro.gate-shown .arb-iview{width:100%;height:100%;max-height:none;aspect-ratio:auto;border-radius:0;box-shadow:none}
 }
