@@ -46,10 +46,17 @@ body.game-mode section[data-room]::-webkit-scrollbar{width:10px}
 body.game-mode section[data-room]::-webkit-scrollbar-thumb{background:var(--racc,var(--cyan))}
 body.game-mode section[data-room] .container{max-width:920px!important;margin:0 auto!important;padding:0 6px!important}
 
-.room-header{display:none;text-align:center;padding:6px 0 18px;border-bottom:2px solid var(--line);margin-bottom:22px}
+.room-header{display:none;text-align:center;padding:22px 0 22px;border-bottom:2px solid var(--line);margin-bottom:26px}
 body.game-mode .room-open .room-header{display:block}
-.room-title{font-family:var(--pix);font-size:1.25rem;color:var(--racc,var(--gold2));text-shadow:3px 3px 0 #000;letter-spacing:.04em;line-height:1.5}
-.room-sub{font-family:var(--read);font-size:1.1rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:.2em;margin-top:8px}
+.room-emblem{display:flex;justify-content:center;margin-bottom:14px}
+.room-emblem svg{width:46px;height:46px;image-rendering:pixelated}
+.room-title{font-family:var(--pix);font-size:1.3rem;color:var(--racc,var(--gold2));text-shadow:3px 3px 0 #000;letter-spacing:.04em;line-height:1.5}
+.room-sub{font-family:var(--read);font-size:1.3rem;color:var(--text-muted);letter-spacing:.03em;margin-top:12px;text-transform:none}
+/* cleaner, artifact-like framing: drop the small section eyebrow; let the room header lead */
+body.game-mode section[data-room] .section-label{display:none!important}
+body.game-mode section[data-room] .section-title{text-align:center;margin-left:auto;margin-right:auto}
+body.game-mode section[data-room] .divider{margin-left:auto;margin-right:auto}
+body.game-mode section[data-room] .section-lead{margin-left:auto;margin-right:auto;text-align:center}
 
 #game-back{position:fixed;top:14px;right:14px;z-index:90;display:none;
   font-family:var(--pix);font-size:.6rem;color:#c8b8f0;background:#2a1b4e;border:2px solid var(--line);
