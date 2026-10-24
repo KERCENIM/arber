@@ -1,0 +1,244 @@
+/* ============================================================
+   ARBËRIKON — PIXEL ARCADE THEME (overrides the base styles)
+   Palette: dark indigo, gold, cyan, Albanian red. Fonts: Press
+   Start 2P (display) + VT323 (readable body). Keeps all layout
+   and JS intact; only re-skins the visual layer.
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
+
+:root{
+  --red:#c42a3a; --red-light:#e0405a; --red-dim:rgba(224,64,90,.14);
+  --gold:#d8b45a; --gold-dim:rgba(216,180,90,.15);
+  --bg:#120a26; --bg2:#180f2c; --bg3:#1d1338; --bg4:#241a44;
+  --border:rgba(201,162,78,.18); --border-hover:rgba(201,162,78,.38);
+  --text:#e7dcff; --text-muted:#9a8ac8; --text-dim:#6a5a9a;
+  --gold2:#f0c860; --cyan:#5fe8c4; --line:#3a2b6e;
+  --pix:'Press Start 2P',monospace; --read:'VT323',ui-monospace,monospace;
+  --shadow:6px 6px 0 rgba(0,0,0,.5);
+}
+html{background:var(--bg)}
+body{font-family:var(--read)!important;font-size:20px;line-height:1.5;letter-spacing:.005em;-webkit-font-smoothing:none}
+p,li,blockquote,cite,input,select,textarea,label,span,div,a,td,th{letter-spacing:.005em}
+
+/* readable body text everywhere */
+.section-lead,.hero-sub,.timeline-content p,.gen-card p,.fact-item p,.fact-item h4 + p,
+.dialect-card p,.dialect-card .sub,.dialect-note p,.paper-card p,.post-text,.post-quote,
+.post-cite,.post-source-label,.anc-label,.anc-val,.ab-name,.ab-ipa,.gheg-vowel-note,
+.alphabet-source,.map-figure-cap p,.study-fig-cap p,.cite,.dna-map-head p,.contribute-head p,
+.form-field label,.dict-note,.dict-status,.dict-results,.blockquote blockquote,.quote-source,
+.stat-cell .label,.paper-meta,.ydna-name,.ydna-sub,.ydna-desc,.post-date,.post-stats,.post-tag-pill,
+.map-figure-attr,.dna-credit,.opt{font-family:var(--read)!important;letter-spacing:.01em}
+.section-lead,.hero-sub{font-size:1.3rem;line-height:1.5}
+.timeline-content p,.gen-card p,.fact-item p,.dialect-card p,.paper-card p,.post-text,.post-quote,.contribute-head p{font-size:1.18rem;line-height:1.46}
+
+/* pixel display font — used sparingly for titles/labels/controls */
+.nav-logo,.hero-title,.section-title,.section-label,.hero-tag,.stat-cell .number,
+.dict-toggle-btn,.post-filter,.posts-more-btn,.fignum,.eyebrow,.dna-leg-count,
+.submit-btn,.map-periods button,.pill,.alphabet-subhead{font-family:var(--pix)!important;letter-spacing:.02em}
+
+/* sub-headings — pixel feel but readable (VT323, bold, uppercase) */
+.timeline-content h3,.gen-card h3,.fact-item h4,.dialect-card h3,.paper-card h3,
+.contribute-head h2,.dna-map-head h3,.study-figs-head h3,.figtitle,.ancestry-bar-section h3,
+.ab-letter,.ydna-name{font-family:var(--read)!important;font-weight:400;text-transform:uppercase;
+  letter-spacing:.06em;color:var(--gold2)}
+.timeline-content h3,.gen-card h3,.dialect-card h3,.paper-card h3,.study-figs-head h3,.dna-map-head h3,.ancestry-bar-section h3{font-size:1.5rem;line-height:1.2}
+.fact-item h4,.figtitle{font-size:1.35rem;line-height:1.2}
+
+/* generic pixel panel helper applied to cards */
+.gen-card,.paper-card,.post-card-inner,.timeline-content,.dialect-card,.dictionary-box,
+.stat-cell,.fact-item,.ancestry-bar-section,.study-fig,.map-figure,.dna-map-shell,
+.submit-form,.alphabet-grid,.gheg-vowel-grid,.blockquote,.map-gallery,.already-box{
+  border-radius:0!important}
+
+/* ---------------- NAV ---------------- */
+nav{background:#0b0718!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
+  border-bottom:3px solid var(--line)!important;height:60px!important;padding:0 20px!important}
+.nav-logo{font-size:.8rem!important;color:var(--gold)!important;text-shadow:2px 2px 0 #000}
+.nav-logo span{color:var(--red-light)!important}
+.nav-links{gap:2px!important}
+.nav-links a{font-family:var(--read)!important;font-size:1.1rem!important;color:var(--text-muted)!important;
+  padding:6px 10px;border:2px solid transparent;text-transform:uppercase;letter-spacing:.06em!important}
+.nav-links a:hover{color:var(--gold2)!important;border-color:var(--line)}
+.nav-links a.active{color:#120a26!important;background:var(--gold)!important;border-color:var(--gold)}
+.nav-x{font-family:var(--read)!important;font-size:1.05rem!important;color:var(--text-muted)!important}
+.nav-x:hover{color:var(--gold2)!important}
+.nav-hamburger span{background:var(--gold)!important}
+.mobile-menu{background:#0b0718!important;border-bottom:3px solid var(--line)!important}
+.mobile-menu a{font-family:var(--read)!important;font-size:1.3rem!important;color:var(--text-muted)!important;text-transform:uppercase;border-bottom:2px solid var(--line)!important}
+.mobile-menu a:hover,.mobile-menu a.active{color:var(--gold2)!important}
+.mobile-navbar{background:#0b0718!important;border-bottom:3px solid var(--line)!important}
+.mobile-navbar a{font-family:var(--read)!important;font-size:1.1rem!important;color:var(--text-muted)!important;text-transform:uppercase}
+.mobile-navbar a.active{color:var(--gold2)!important}
+
+/* ---------------- HERO ---------------- */
+.hero-tag{font-size:.5rem!important;color:var(--gold)!important;border:2px solid rgba(216,180,90,.5)!important;border-radius:0!important;letter-spacing:.14em!important}
+.hero-title{font-size:clamp(1.8rem,7vw,3.6rem)!important;color:var(--gold2)!important;letter-spacing:.04em!important;
+  text-shadow:-2px 0 var(--red-light),2px 0 var(--cyan),4px 5px 0 #000!important;line-height:1!important}
+.hero-title em{font-style:normal!important;color:var(--gold)!important;-webkit-text-fill-color:var(--gold)}
+.hero-sub{color:var(--text-muted)!important}
+.pill{font-size:.52rem!important;color:var(--gold)!important;background:var(--bg3)!important;border:2px solid var(--line)!important;border-radius:0!important;letter-spacing:.06em!important;padding:8px 10px!important}
+.hero-scroll{font-family:var(--read)!important;font-size:1rem!important;color:var(--text-dim)!important;text-transform:uppercase;letter-spacing:.2em}
+.hero-eagle-glow{opacity:.14!important}
+.hero-eagle-sharp{opacity:.07!important}
+
+/* ---------------- SECTION HEADS ---------------- */
+.section-label{font-size:.55rem!important;color:var(--red-light)!important;letter-spacing:.18em!important}
+.section-title{font-size:clamp(1.05rem,3vw,1.7rem)!important;color:var(--gold2)!important;line-height:1.5!important;text-shadow:3px 3px 0 #000}
+.divider{height:3px!important;background:var(--line)!important}
+
+/* ---------------- ABOUT ---------------- */
+.stat-cell{background:var(--bg2)!important;border:3px solid var(--line)!important;box-shadow:var(--shadow);padding:18px!important}
+.stat-cell .number{font-size:1.5rem!important;color:var(--gold2)!important;text-shadow:2px 2px 0 #000}
+.stat-cell .number em{color:var(--red-light)!important}
+.stat-cell .label{color:var(--text-muted)!important;font-size:1.05rem!important}
+
+/* ---------------- TIMELINE ---------------- */
+.timeline::before,.timeline-line{background:var(--line)!important}
+.timeline-dot{background:var(--gold)!important;box-shadow:0 0 0 4px var(--bg)!important;border-radius:0!important}
+.timeline-date{font-family:var(--read)!important;font-size:1.15rem!important;color:var(--red-light)!important;text-transform:uppercase;letter-spacing:.04em}
+.timeline-content{background:var(--bg2)!important;border:3px solid var(--line)!important;box-shadow:var(--shadow);padding:18px 20px!important}
+.timeline-tag{font-family:var(--read)!important;font-size:1rem!important;color:var(--gold)!important;background:transparent!important;border:2px solid var(--line)!important;border-radius:0!important;text-transform:uppercase;letter-spacing:.08em}
+
+/* ---------------- MAP GALLERY ---------------- */
+.eyebrow{font-size:.52rem!important;color:var(--cyan)!important;letter-spacing:.16em!important}
+.map-gallery,.map-figure{background:var(--bg2)!important;border:3px solid var(--line)!important;border-radius:0!important}
+.map-periods button{font-size:.5rem!important;background:var(--bg3)!important;color:var(--text-muted)!important;border:2px solid var(--line)!important;border-radius:0!important;padding:9px 11px!important}
+.map-periods button.active{background:var(--gold)!important;color:#120a26!important;border-color:var(--gold)!important}
+.map-figure-attr{color:var(--text-dim)!important}
+
+/* ---------------- GENETICS ---------------- */
+.gen-card{background:var(--bg2)!important;border:3px solid var(--line)!important;box-shadow:var(--shadow);border-radius:0!important;padding:18px!important}
+.gen-card-icon{background:transparent!important;border:2px solid var(--gold)!important;border-radius:0!important;color:var(--gold)!important}
+.gen-card-icon svg{stroke:var(--gold)!important}
+.ancestry-bar-section{background:var(--bg2)!important;border:3px solid var(--line)!important;box-shadow:var(--shadow);border-radius:0!important}
+.anc-label{color:var(--text)!important;font-size:1.12rem!important}
+.anc-bar-wrap{background:#0a0714!important;border-radius:0!important;box-shadow:inset 0 0 0 2px var(--line)}
+.anc-bar{border-radius:0!important;background-image:repeating-linear-gradient(90deg,rgba(0,0,0,0) 0 6px,rgba(0,0,0,.25) 6px 8px)}
+.anc-val{font-family:var(--pix)!important;font-size:.6rem!important;color:var(--gold2)!important}
+.dna-map-shell{border:3px solid var(--line)!important;border-radius:0!important;box-shadow:var(--shadow)}
+#dna-map{background:#0a0714!important}
+.dna-legend{background:rgba(11,7,24,.92)!important;border:2px solid var(--line)!important;border-radius:0!important}
+.dna-legend-title,.dna-leg-name{font-family:var(--read)!important;color:var(--text)!important;text-transform:uppercase;letter-spacing:.06em}
+.dna-leg-count{font-size:.5rem!important;color:var(--gold2)!important}
+.dna-map-loading{font-family:var(--read)!important;font-size:1.2rem!important;color:var(--cyan)!important}
+.dna-credit{color:var(--text-dim)!important}
+.study-fig{background:var(--bg2)!important;border:3px solid var(--line)!important;box-shadow:var(--shadow);border-radius:0!important}
+.study-fig-figure img,.map-figure img{image-rendering:auto!important}
+.fignum{font-size:.55rem!important;color:var(--red-light)!important}
+.cite,.study-fig-cap p{color:var(--text-muted)!important}
+
+/* ---------------- LINGUISTICS ---------------- */
+.dialect-card{background:var(--bg2)!important;border:3px solid var(--line)!important;box-shadow:var(--shadow);border-radius:0!important;padding:18px 20px!important}
+.dialect-card.featured{border-color:var(--gold)!important}
+.dialect-badge{font-family:var(--read)!important;font-size:1rem!important;color:var(--cyan)!important;background:transparent!important;border:2px solid var(--line)!important;border-radius:0!important;text-transform:uppercase}
+.dialect-card .sub{color:var(--text-muted)!important}
+.dialect-note{background:var(--bg3)!important;border:2px solid var(--line)!important;border-radius:0!important}
+.fact-item{background:var(--bg2)!important;border:3px solid var(--line)!important;box-shadow:var(--shadow);border-radius:0!important;padding:16px 18px!important}
+.fact-num{font-family:var(--pix)!important;font-size:.9rem!important;color:var(--red-light)!important;background:transparent!important;border:2px solid var(--line)!important;border-radius:0!important}
+.alphabet-subhead{font-size:.7rem!important;color:var(--gold2)!important;line-height:1.6!important}
+.alphabet-grid,.gheg-vowel-grid{background:transparent!important;gap:4px!important}
+.alphabet-cell,.gheg-vowel-cell{background:var(--bg3)!important;border:2px solid var(--line)!important;border-radius:0!important}
+.ab-letter{font-size:1.5rem!important;color:var(--gold2)!important}
+.ab-name,.ab-ipa{color:var(--text-muted)!important;font-size:1.02rem!important}
+.alphabet-source,.gheg-vowel-note{color:var(--text-muted)!important}
+
+/* ---------------- DICTIONARY ---------------- */
+.dictionary-box{background:var(--bg2)!important;border:3px solid var(--line)!important;box-shadow:var(--shadow);border-radius:0!important}
+.dict-toggle{border:2px solid var(--line)!important;border-radius:0!important}
+.dict-toggle-btn{font-size:.55rem!important;background:var(--bg3)!important;color:var(--text-muted)!important;border-radius:0!important;padding:12px 14px!important}
+.dict-toggle-btn.active{background:var(--red)!important;color:#fff!important}
+.dict-search-wrap{border:2px solid var(--line)!important;border-radius:0!important;background:#0a0714!important}
+.dict-search-wrap svg{stroke:var(--gold)!important}
+.dict-search{font-family:var(--read)!important;font-size:1.4rem!important;color:var(--text)!important;background:transparent!important}
+.dict-results{border-top:2px solid var(--line)!important}
+.dict-results .dict-row,.dict-row{border-bottom:2px solid var(--line)!important}
+.dict-note{color:var(--text-dim)!important;border-top:2px solid var(--line)!important}
+
+/* ---------------- QUOTE ---------------- */
+.blockquote{background:var(--bg2)!important;border:3px solid var(--line)!important;box-shadow:var(--shadow);border-radius:0!important}
+.blockquote-mark{color:var(--line)!important}
+.blockquote blockquote{font-family:var(--read)!important;font-size:1.6rem!important;color:var(--text)!important;line-height:1.4}
+.quote-source{font-family:var(--read)!important;color:var(--gold)!important;text-transform:uppercase;letter-spacing:.1em}
+
+/* ---------------- RESEARCH ---------------- */
+.paper-card{background:var(--bg2)!important;border:3px solid var(--line)!important;box-shadow:var(--shadow);border-radius:0!important;padding:18px 20px!important}
+.paper-tag{font-family:var(--read)!important;font-size:1rem!important;color:var(--cyan)!important;background:transparent!important;border:2px solid var(--line)!important;border-radius:0!important;text-transform:uppercase;letter-spacing:.06em}
+.paper-meta,.paper-card a{color:var(--text-muted)!important}
+.paper-card a:hover{color:var(--gold2)!important}
+
+/* ---------------- POSTS ---------------- */
+.post-filter{font-size:.55rem!important;background:var(--bg3)!important;color:var(--text-muted)!important;border:2px solid var(--line)!important;border-radius:0!important;padding:10px 12px!important}
+.post-filter.active{background:var(--gold)!important;color:#120a26!important;border-color:var(--gold)!important}
+.post-card-inner{background:var(--bg2)!important;border:3px solid var(--line)!important;box-shadow:var(--shadow);border-radius:0!important}
+.post-tag-pill{font-family:var(--read)!important;font-size:1rem!important;color:var(--gold)!important;background:transparent!important;border:2px solid var(--line)!important;border-radius:0!important;text-transform:uppercase}
+.post-date{color:var(--text-dim)!important;font-size:1.05rem!important}
+.post-text{color:var(--text)!important}
+.post-source{background:var(--bg3)!important;border:2px solid var(--line)!important;border-radius:0!important}
+.post-source-label{font-family:var(--read)!important;color:var(--cyan)!important;font-size:1rem!important;letter-spacing:.08em}
+.post-quote{color:var(--text-muted)!important;border-left:3px solid var(--line)!important}
+.post-quote mark.hl-gold{background:rgba(216,180,90,.22)!important;color:var(--gold2)!important}
+.post-quote mark.hl-red{background:rgba(224,64,90,.22)!important;color:var(--red-light)!important}
+.post-cite{color:var(--text-dim)!important}
+.post-stats,.post-stats span{color:var(--text-muted)!important}
+.post-xlink{font-family:var(--read)!important;color:var(--gold)!important;text-transform:uppercase;letter-spacing:.06em}
+.post-xlink:hover{color:var(--gold2)!important}
+.ydna-name{font-size:1.25rem!important}
+.ydna-sub{color:var(--text-muted)!important}
+.ydna-desc{color:var(--text-dim)!important}
+.posts-more-btn{font-size:.58rem!important;background:var(--bg3)!important;color:var(--gold2)!important;border:2px solid var(--line)!important;border-radius:0!important;box-shadow:var(--shadow);padding:14px 18px!important}
+.posts-more-btn:hover{background:var(--line)!important}
+
+/* ---------------- CONTRIBUTE FORM ---------------- */
+.contribute-head h2{font-size:1.5rem!important}
+.submit-form{background:var(--bg2)!important;border:3px solid var(--line)!important;box-shadow:var(--shadow);border-radius:0!important}
+.form-field label{color:var(--cyan)!important;text-transform:uppercase;letter-spacing:.08em;font-size:1.05rem!important}
+.form-field .opt{color:var(--text-dim)!important;text-transform:none}
+.form-field input,.form-field select,.form-field textarea{background:#0a0714!important;border:2px solid var(--line)!important;border-radius:0!important;color:var(--text)!important;font-family:var(--read)!important;font-size:1.25rem!important}
+.form-field input:focus,.form-field select:focus,.form-field textarea:focus{border-color:var(--gold)!important;outline:none}
+.form-field input::placeholder{color:var(--text-dim)!important}
+.submit-btn{font-size:.6rem!important;background:var(--gold)!important;color:#120a26!important;border:0!important;border-radius:0!important;box-shadow:var(--shadow);padding:15px 20px!important}
+.submit-btn:hover{background:var(--gold2)!important}
+.already-box,.submit-success,.file-drop{background:var(--bg3)!important;border:2px solid var(--line)!important;border-radius:0!important}
+
+/* buttons/links generic */
+a{color:var(--cyan)}
+a:hover{color:var(--gold2)}
+button{border-radius:0}
+
+/* focus visibility for accessibility */
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--gold2)!important;outline-offset:2px}
+
+/* ---------------- CRT SCANLINES (toggleable) ---------------- */
+.crt-lines{position:fixed;inset:0;pointer-events:none;z-index:9000;
+  background:repeating-linear-gradient(0deg,rgba(0,0,0,.20) 0 1px,transparent 1px 3px);mix-blend-mode:multiply}
+.crt-vig{position:fixed;inset:0;pointer-events:none;z-index:9001;
+  background:radial-gradient(130% 120% at 50% 45%,transparent 72%,rgba(5,3,14,.45) 100%)}
+body.nocrt .crt-lines,body.nocrt .crt-vig{display:none}
+
+/* ---------------- GATE INTRO ---------------- */
+#arb-intro{position:fixed;inset:0;z-index:12000;background:#07040f;display:flex;align-items:center;justify-content:center;transition:opacity .5s ease}
+#arb-intro.gone{opacity:0;visibility:hidden;pointer-events:none}
+.arb-iview{position:relative;width:min(760px,94vw);aspect-ratio:680/520;background:#140a28;border-radius:10px;overflow:hidden;box-shadow:inset 0 0 60px rgba(0,0,0,.85)}
+.arb-iboot{position:absolute;inset:0;padding:22px 24px;font-family:var(--read);font-size:1.2rem;color:var(--cyan);line-height:1.6}
+.arb-iboot .ok{color:var(--gold2)}.arb-iboot .cur{animation:arbblink .5s steps(2) infinite}
+@keyframes arbblink{50%{opacity:0}}
+.arb-ititle{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .4s}
+.arb-ititle.on{opacity:1;visibility:visible}
+.arb-ititle svg{display:block;width:100%;height:100%;image-rendering:pixelated}
+.arb-iui{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:7%;gap:12px}
+.arb-ibtn{font-family:var(--pix);font-size:.66rem;letter-spacing:.06em;color:#140a28;background:var(--gold2);border:0;padding:14px 20px;cursor:pointer;box-shadow:4px 4px 0 #8a6a16}
+.arb-ibtn:active{transform:translate(2px,2px);box-shadow:2px 2px 0 #8a6a16}
+.arb-iskip{position:absolute;top:12px;right:14px;font-family:var(--read);font-size:1.1rem;color:var(--text-muted);background:none;border:0;cursor:pointer;text-transform:uppercase;letter-spacing:.1em}
+.arb-iskip:hover{color:var(--gold2)}
+
+/* footer tools row */
+.arb-tools{position:fixed;left:10px;bottom:10px;z-index:8000;display:flex;gap:8px}
+.arb-tools button{font-family:var(--read);font-size:1rem;color:var(--text-muted);background:rgba(11,7,24,.85);border:2px solid var(--line);padding:6px 11px;cursor:pointer;text-transform:uppercase;letter-spacing:.05em}
+.arb-tools button:hover{color:var(--gold2)}
+
+@media (prefers-reduced-motion:reduce){.arb-iboot .cur,#arb-intro{animation:none;transition:none}}
+@media(max-width:640px){
+  .arb-tools{left:6px;bottom:6px}
+  body{font-size:19px}
+}
+</content>
