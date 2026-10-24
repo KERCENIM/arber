@@ -19,6 +19,10 @@ body.game-mode > footer{display:none!important}
 #game-bg svg{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:118%;height:118%;
   image-rendering:pixelated;filter:brightness(.5) saturate(.85)}
 #game-bg::after{content:'';position:absolute;inset:0;background:rgba(8,5,20,.5)}
+/* when a room is open, the surround goes solid black like the home-screen cabinet */
+body.game-mode.room-active #game-bg{background:#000}
+body.game-mode.room-active #game-bg svg{display:none}
+body.game-mode.room-active #game-bg::after{display:none}
 
 /* ---------- MENU ---------- */
 #game-menu{position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;padding:18px}
@@ -37,11 +41,11 @@ body.game-mode > footer{display:none!important}
 .gm-hint{margin-top:14px;font-family:var(--read);font-size:1rem;color:var(--text-dim);letter-spacing:.14em;text-transform:uppercase}
 
 /* ---------- ROOMS ---------- */
-body.game-mode section[data-room]{position:fixed;inset:18px;z-index:60;display:none;overflow-y:auto;
-  background:rgba(13,8,26,.985);border:3px solid var(--racc,var(--cyan));border-radius:14px;
-  box-shadow:0 0 0 2px #0b0718,inset 0 0 55px rgba(0,0,0,.7),0 24px 60px rgba(0,0,0,.55);padding:16px 22px 46px!important;margin:0!important}
+body.game-mode section[data-room]{position:fixed;top:22px;bottom:22px;left:50%;transform:translateX(-50%);width:min(1000px,94vw);z-index:60;display:none;overflow-y:auto;
+  background:rgba(13,8,26,.99);border:3px solid var(--racc,var(--cyan));border-radius:14px;
+  box-shadow:0 0 0 2px #000,inset 0 0 55px rgba(0,0,0,.7),0 24px 70px rgba(0,0,0,.7);padding:16px 22px 46px!important;margin:0!important}
 body.game-mode section[data-room].room-open{display:block;animation:arbroomin .3s ease}
-@keyframes arbroomin{from{opacity:0;transform:scale(.995)}to{opacity:1;transform:none}}
+@keyframes arbroomin{from{opacity:0}to{opacity:1}}
 body.game-mode section[data-room]::-webkit-scrollbar{width:10px}
 body.game-mode section[data-room]::-webkit-scrollbar-thumb{background:var(--racc,var(--cyan))}
 body.game-mode section[data-room] .container{max-width:920px!important;margin:0 auto!important;padding:0 6px!important}
