@@ -3462,7 +3462,7 @@
   <div class="arb-iview">
     <div class="arb-iboot" id="arb-boot"></div>
     <div class="arb-ititle" id="arb-title">
-      <div class="arb-hud-l">&#9834; SOUND: ON</div>
+      <button class="arb-hud-l" id="arb-sound" type="button">&#9834; SOUND: ON</button>
       <a class="arb-hud-r" href="https://x.com/arberikon" target="_blank" rel="noopener noreferrer">&#64;arberikon</a>
       <div class="arb-head"><div class="arb-h1">ARBËRIKON</div><div class="arb-h2">An inquiry into Albanian origins</div></div>
       <svg class="arb-scene" viewBox="0 0 680 520" preserveAspectRatio="xMidYMax slice" shape-rendering="crispEdges" aria-hidden="true">
@@ -3526,8 +3526,9 @@
   var intro=document.getElementById('arb-intro'); if(!intro) return;
   var boot=document.getElementById('arb-boot'), title=document.getElementById('arb-title');
   var AC=null;
+  var soundOn=true; try{if(localStorage.getItem('arb_snd')==='0')soundOn=false;}catch(e){}
   function ac(){if(!AC){try{AC=new (window.AudioContext||window.webkitAudioContext)();}catch(e){}}if(AC&&AC.state==='suspended')AC.resume();return AC;}
-  function tone(f,d,t,v){var c=ac();if(!c)return;var o=c.createOscillator(),g=c.createGain();o.type=t||'square';o.frequency.value=f;o.connect(g);g.connect(c.destination);var n=c.currentTime;g.gain.setValueAtTime(v||.05,n);g.gain.exponentialRampToValueAtTime(.0008,n+d);o.start(n);o.stop(n+d+.02);}
+  function tone(f,d,t,v){if(!soundOn)return;var c=ac();if(!c)return;var o=c.createOscillator(),g=c.createGain();o.type=t||'square';o.frequency.value=f;o.connect(g);g.connect(c.destination);var n=c.currentTime;g.gain.setValueAtTime(v||.05,n);g.gain.exponentialRampToValueAtTime(.0008,n+d);o.start(n);o.stop(n+d+.02);}
   function chime(){[392,523,659,880].forEach(function(f,i){setTimeout(function(){tone(f,.13,'square',.05);},i*80);});}
   var BOOT=['ARBËRIKON SYSTEM  v1.0','(c) MMXXVI  KEEP OF THE ARBËR','','> LOADING KEEP.DAT ...... <span class="ok">OK</span>','> MUSTERING THE GUARD ... <span class="ok">OK</span>','> RAISING THE BANNERS ... <span class="ok">OK</span>','','READY<span class="cur">_</span>'];
   function runBoot(){boot.innerHTML='';boot.style.opacity='1';title.classList.remove('on');intro.classList.remove('gate-shown');var i=0;(function step(){if(i<BOOT.length){var d=document.createElement('div');d.innerHTML=BOOT[i]||'&nbsp;';boot.appendChild(d);i++;setTimeout(step,i<6?150:230);}else{setTimeout(function(){boot.style.opacity='0';title.classList.add('on');intro.classList.add('gate-shown');},650);}})();}
@@ -3543,6 +3544,9 @@
   function applyCRT(){document.body.classList.toggle('nocrt',!crtOn);var b=document.getElementById('arb-crt');if(b)b.textContent=crtOn?'Scanlines: On':'Scanlines: Off';}
   applyCRT();
   document.getElementById('arb-crt').addEventListener('click',function(){crtOn=!crtOn;try{localStorage.setItem('arb_crt',crtOn?'1':'0');}catch(e){}applyCRT();});
+  function applySound(){var b=document.getElementById('arb-sound');if(b)b.innerHTML='&#9834; SOUND: '+(soundOn?'ON':'OFF');}
+  applySound();
+  document.getElementById('arb-sound').addEventListener('click',function(){soundOn=!soundOn;try{localStorage.setItem('arb_snd',soundOn?'1':'0');}catch(e){}applySound();if(soundOn)tone(660,.1,'square',.05);});
   document.getElementById('arb-replay').addEventListener('click',function(){showIntro();});
   showIntro();
 })();

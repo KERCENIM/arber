@@ -229,6 +229,8 @@ body.nocrt .crt-lines,body.nocrt .crt-vig{display:none}
 .arb-hud-l{left:24px}.arb-hud-r{right:24px}
 a.arb-hud-r{text-decoration:none;cursor:pointer;transition:color .15s}
 a.arb-hud-r:hover,a.arb-hud-r:focus-visible{color:var(--cyan);outline:none}
+button.arb-hud-l{background:none;border:0;padding:0;margin:0;cursor:pointer;transition:color .15s}
+button.arb-hud-l:hover,button.arb-hud-l:focus-visible{color:var(--cyan);outline:none}
 .arb-head{position:absolute;top:16px;left:0;right:0;z-index:6;text-align:center;padding:0 40px}
 .arb-h1{font-family:var(--pix);font-size:clamp(1.5rem,5.2vw,3.1rem);color:var(--gold2);letter-spacing:.05em;line-height:1;text-shadow:-2px 0 var(--red-light),2px 0 #156b59,3px 5px 0 #000}
 .arb-h2{font-family:var(--read);font-size:clamp(1rem,2.6vw,1.5rem);letter-spacing:.32em;color:#c89aff;text-transform:uppercase;margin-top:14px}
